@@ -1,5 +1,6 @@
 ## Installation Instructions (Mac/Linux)
 **Prerequisite: installed Python3**
+
 **Prerequisite: running mongodb service**
 
 ### Step 1: Install Virtual Environment
@@ -37,6 +38,7 @@ db.collection_record.insertMany([{
 }])
 ### User collection
 ***(needs at least one User – fill out <> with specific values):***
+
 ***Password Value needs to be hashed pwrd via bcrypt 12 rounds:***
 
 
