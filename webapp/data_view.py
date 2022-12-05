@@ -64,7 +64,7 @@ def update_data(dataset_id):
     if request.method == "POST":
         uploaded_file = request.files['file']
         filename = secure_filename(uploaded_file.filename)
-        from app import app
+        from run import app
         if filename != '':
             file_ext = os.path.splitext(filename)[1]
             if file_ext not in app.config['UPLOAD_EXTENSIONS']:
@@ -240,7 +240,7 @@ def insert_mongo(csv_file_path, filename, dataset_key):
 #
 def convert_csv_to_json(csv_file_path, filename, dataset_type):
     json_filename = filename.replace("csv", "json")
-    from app import app
+    from run import app
     json_file_path = os.path.join(app.root_path, 'uploads', json_filename)
 
     import pandas as pd
