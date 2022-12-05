@@ -1,21 +1,21 @@
-##Installation Instructions (Mac/Linux)
+## Installation Instructions (Mac/Linux)
 **Prerequisite: installed Python3**
 **Prerequisite: running mongodb service**
 
-###Step 1: Install Virtual Environment
+### Step 1: Install Virtual Environment
 python3 -m venv <name of environment>
 
-###Step 2: Activate Venv
+### Step 2: Activate Venv
 . <name of environment>/bin/activate
 
-###Step 3: Install Requirements
+### Step 3: Install Requirements
 pip install -r requirements.txt
 
-###Step 4: Run App
+### Step 4: Run App
 python3 run.py
 
 
-##MongoDB required collections
+## MongoDB required collections
 **The app requires some initial data in our database. Otherwise it wouldn’t work.
 These collections have to be inserted:**
 ###CollectionRecord collection: 
@@ -35,7 +35,7 @@ db.collection_record.insertMany([{
     "$date": "2021-06-14T12:35:07.326Z"
   }
 }])
-###User collection
+### User collection
 ***(needs at least one User – fill out <> with specific values):***
 ***Password Value needs to be hashed pwrd via bcrypt 12 rounds:***
 
@@ -43,7 +43,7 @@ db.collection_record.insertMany([{
 db.user.insertOne({
 "_id":1,"first_name":"<Vorname>","last_name":"<Nachname>","email":"<email_des_Users>","password":"<hashes_password>"})
 
-###Graph_order collection:
+### Graph_order collection:
 
 db.graph_order.insertOne({
   "order": "[]"
