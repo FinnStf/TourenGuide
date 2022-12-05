@@ -1,0 +1,217 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link href="{{ url_for('static', filename='css/discover_view.css') }}" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock head %}
+
+{% block content %}
+    <div id="chart" style="margin-top: 0.5rem" class="chart"></div>
+    <div id="accordion">
+   <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div id="discoverForm" class="card-body">
+          <form method="post">
+            <div class="row" style="justify-content: center;">
+                <div class="ml-3">
+                    <!--  choose the type of dataset  -->
+                    <div class="mr-4">
+                        {{ form.dataset_type (class_="select form-control") }}
+                    </div>
+                    <small class="form-text text-muted">Datensatz-Typ</small>
+                      <!--  choose the type of traffic  -->
+                    <div class="mr-4 mt-3">
+                        {{ form.traffic_type (class_="select form-control") }}
+                    </div>
+                    <small class="form-text text-muted">Verkehrsart</small>
+                    <div class="btn-group mb-3 mr-4">
+                        <!-- submit button -->
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success" style="padding-right:65px; padding-left:65px">
+                                Anwenden
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mr-5 ml-5">
+                    <div>
+                        <!--  select a startdate as filter  -->
+                        <div>
+                            {% if form.startDate.errors %}
+                            {{ form.startDate (class_="datepicker form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.startDate.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.startDate (class_="datepicker form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Startdatum</small>
+                        </div>
+
+                        <!--  select a enddate as filter  -->
+                        <div class="mt-3">
+                            {% if form.endDate.errors %}
+                            {{ form.endDate (class_="datepicker form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.endDate.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.endDate (class_="datepicker form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Enddatum</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mr-5">
+                    <div>
+                        <!--  select a startTime as filter  -->
+                        <div>
+                            {% if form.startTime.errors %}
+                            {{ form.startTime (class_="timepicker form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.startTime.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.startTime (class_="timepicker form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Startzeit</small>
+                        </div>
+
+                        <!--  select a endTime as filter  -->
+                        <div class="mt-3">
+                            {% if form.endTime.errors %}
+                            {{ form.endTime (class_="timepicker form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.endTime.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.endTime (class_="timepicker form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Endzeit</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mr-5">
+                    <div>
+                        <!--  select a startName as filter  -->
+                        <div>
+                            {% if form.startName.errors %}
+                            {{ form.startName (class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.startName.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.startName (class_="form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Startpunkt - Landkreis</small>
+                        </div>
+
+                        <!--  select a endName as filter  -->
+                        <div class="mt-3">
+                            {% if form.endName.errors %}
+                            {{ form.endName (class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.endName.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.endName (class_="form-control") }}
+                            {% endif %}
+                            <small class="form-text text-muted">Endpunkt - Landkreis</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+     <div class="card">
+        <div style="padding: 0" class="card-header" id="headingOne">
+           <div style="display: flex; justify-content: space-between; align-items: center">
+                <div style="display: inline-flex">
+                    <p style="align-self: center; margin-bottom:0" id="paginationHelper">Displaying documents from {{ pagination['from'] }} - {{ pagination['to']}} of {{ pagination['of'] }}</p>
+                     <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+                <div>
+                    <button onclick="getNextPage(0)" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i></button>
+                    <button onclick="getNextPage(1)" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+     </div>
+    </div>
+<!-- table to display data -->
+    {% if datasets %}
+
+        <table id="discoverTable" class="table table-sm table-striped table-bordered table-hover sticky-header">
+        <thead>
+        <tr id="discoverTableHeader" class="table-primary">
+            {% for keyword in keywords %}
+            <th>{{ keyword }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody id="discoverTableBody">
+
+        <!-- rows -->
+        {% for dataset in datasets %}
+        <tr>
+            {% for keyword in keywords %}
+            <td> {{ dataset[keyword] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% endif %}
+
+<script>
+	if(!jQuery.isEmptyObject({{ graph|tojson }})) {
+		var graph = JSON.parse({{ graph|tojson }});
+		var graphs = {{graph | safe }};
+		Plotly.plot('chart', graphs, {});
+	}
+    function getNextPage(method){
+            $.ajax({
+                url: '/_get_next_data_page/'+method,
+                type: 'get',
+                success: function(json){
+                    if (json){
+                         parseTable(json['data'], json['keys'], json['index'])
+                    }
+                }
+            })
+    }
+        function parseTable(data, keys, index){
+            $('#paginationHelper').text('Displaying documents from '+ index['from'] + ' - ' + index['to']+' of '+ index['of']);
+            var tableHeader = ''
+            keys.forEach(key =>  tableHeader+='<th>' + key + '</th>');
+            $('#discoverTableHeader').html(tableHeader);
+            var tableBody = ''
+            data.forEach(entry => {
+                tableBody += '<tr>'
+                keys.forEach(key => {
+                    tableBody+='<td>' + entry[key] + '</td>'
+                })
+                tableBody += '</tr>'
+            })
+            $('#discoverTableBody').html(tableBody);
+        }
+</script>
+{% endblock content %}

@@ -1,0 +1,261 @@
+{% extends "layout.html" %}
+
+{% block noContainer %}
+<div class="row mx-auto mt-4">
+	<div id="chart-border" class="border mr-5 ml-auto"
+		 style="border-radius:20px; box-shadow: 1px 1px 3px grey; display: none;">
+		<div id="chart" class="chart mr-5"></div>
+	</div>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<div class="mr-auto ml-3">
+		<form method="post">
+			<div class="border" style="border-radius:20px; box-shadow: 1px 1px 3px grey;">
+				<div class="row ml-3">
+					<div class="mr-3 mt-4">
+						<!--  choose the type of dataset  -->
+						<h5 class="mb-3">Datensatz</h5>
+						<div class="mr-4">
+							{{ form.dataset_type (class_="select form-control") }}
+						</div>
+					</div>
+					<!-- type of traffic -->
+					<div class="ml-5 mt-4">
+						<h5 class="mb-3">Verkehrsart</h5>
+						<div class="mr-4">
+							{{ form.traffic_type (class_="select form-control") }}
+						</div>
+					</div>
+					<!-- date pickers -->
+					<div class="mt-4 ml-5 mr-3 mb-3">
+						<h5 class="mb-3">Zeitraum</h5>
+						<!--  select a startdate as filter  -->
+						<div>
+							{% if form.start_date.errors %}
+							{{ form.start_date (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.startDate.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.start_date (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Startdatum</small>
+						</div>
+
+						<!--  select a enddate as filter  -->
+						<div class="mt-3">
+							{% if form.end_date.errors %}
+							{{ form.end_date (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.end_date.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.end_date (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Enddatum</small>
+						</div>
+					</div>
+					<!-- map settings -->
+					<div class="mt-4 mb-3 mr-5 ml-5">
+						<h5 class="mb-3">Map Einstellungen</h5>
+						<div class="row">
+							<div class="ml-3">
+								<div>
+									{{ form.color_scale (class_="select form-control") }}
+								</div>
+								<small class="form-text text-muted">Skala-Farbe</small>
+							</div>
+							<div>
+								<div class="ml-4">
+									{{ form.reverse_colorscale (class_="form-control") }}
+								</div>
+								<small class="form-text text-muted mr-3">Skala umkehren</small>
+							</div>
+						</div>
+						<div class="row mt-3 ml-0">
+							<div class="mr-3">
+								<div>
+									{{ form.upper_range_color (class_="form-control", size=4) }}
+								</div>
+								<small class="form-text text-muted">Obere Skala</small>
+							</div>
+							<div class="ml-3">
+								<div>
+									{{ form.lower_range_color (class_="form-control", size=4) }}
+								</div>
+								<small class="form-text text-muted">Untere Skala</small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- compare graph -->
+				<div class="ml-3">
+					<hr class="mt-3 mr-3">
+
+					<h5 class="mt-3 mb-3" id="textCompare">Vergleichsgraph (Optional)</h5>
+					<div class="row mt-4 ml-0 mb-3" id="compareDates">
+						<div class="mr-4">
+							{% if form.start_date_compare.errors %}
+							{{ form.start_date_compare (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.start_date_compare.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.start_date_compare (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Startdatum</small>
+						</div>
+						<div class="ml-5 mr-4">
+							{% if form.end_date_compare.errors %}
+							{{ form.end_date_compare (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.end_date_compare.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.end_date_compare (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Enddatum</small>
+						</div>
+						<div class="ml-5">
+							{{ form.proportion_unit (class_="select form-control") }}
+						</div>
+					</div>
+
+					<!-- actions -->
+					<hr class="mt-3 mr-3">
+					<div class="row mt-2 mb-3 ml-0">
+						<!-- submit button -->
+						<button class="btn btn-success btn-md mt-2" type="submit"
+								style="font-size:16px">
+							<i class="fas fa-sync mr-1"></i>
+							Anwenden
+						</button>
+						<!-- save button -->
+						<button id="saveButton" type="button" class="btn btn-primary btn-md ml-5 mt-2"
+								style="font-size:16px; display:none"
+								onclick="saveGraph()">
+							<i class="far fa-save mr-1" id="saveButtonIcon"></i>
+							<span id="saveButtonText">Speichern</span>
+						</button>
+						<!-- clear input -->
+						<button id="clearInputButton" type="button" class="btn btn-warning btn-md ml-5 mt-2"
+								style="font-size:16px"
+								onclick="clearInputs()">
+							<i class="fas fa-eraser mr-1"></i>
+							<span id="clearInputsText">Eingaben löschen</span>
+						</button>
+						<!-- save csv file -->
+						<button id="saveCSVButton" type="button" class="btn btn-warning btn-md ml-5 mt-2"
+								style="font-size:16px; display:none"
+								onclick="saveCSV()">
+							<i class="fas fa-file-download mr-1"></i>
+							<span id="saveCSVText">CSV Download</span>
+						</button>
+					</div>
+					<div class="mr-3 mt-4 mb-3">
+						<input name="graphTitle" type="text" placeholder="Graph Überschrift" maxlength="200"
+							   id="graphTitle"
+							   class="searchField"
+							   style="border:1px solid; border-color:#ced4da; border-radius:4px; visibility:hidden"
+							   size="57"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	var url = window.location.href;
+	if(url.includes("maps/")){
+		var clearInputsText = document.getElementById("clearInputsText");
+		clearInputsText.textContent = "Eingaben zurücksetzen";
+	}
+
+	if(!jQuery.isEmptyObject({{ graph|tojson }})) {
+		var graph = JSON.parse({{ graph|tojson }});
+		var graphs = {{graph | safe }};
+		Plotly.plot('chart', graphs, {});
+		document.getElementById("chart-border").style.display = 'block';
+		if({{ is_new_graph|int }}){
+			document.getElementById("saveButton").style.display = 'block';
+			document.getElementById("saveCSVButton").style.display = 'block';
+			document.getElementById("graphTitle").style.visibility = 'visible';
+		}
+	}
+
+function saveGraph(){
+	graphTitle = document.getElementById("graphTitle").value;
+
+	var input = { "dataset_type":  document.getElementById("dataset_type").value,
+				  "start_date": document.getElementById("start_date").value,
+				  "end_date": document.getElementById("end_date").value,
+				  "traffic_type": document.getElementById("traffic_type").value,
+				  "color_scale": document.getElementById("color_scale").value,
+				  "upper_range_color": document.getElementById("upper_range_color").value,
+				  "lower_range_color": document.getElementById("lower_range_color").value,
+				  "start_date_compare": document.getElementById("start_date_compare").value,
+				  "end_date_compare": document.getElementById("end_date_compare").value,
+				  "proportion_unit": document.getElementById("proportion_unit").value,
+				  "reverse_colorscale": document.getElementById("reverse_colorscale").checked
+				  }
+
+	var current_url = window.location.href;
+	var url = window.location.href;
+	var graph_id;
+	if(current_url.includes("maps/")){
+		graph_id = current_url.substring(current_url.lastIndexOf('/') + 1);
+		const lastItem = "/" + graph_id;
+		const lastItemLength = lastItem.length
+		current_url.slice(0, current_url.length-lastItemLength);
+		url = current_url.slice(0, current_url.length-lastItemLength)
+	}
+	url = url.replace('maps', 'graph_to_db');
+
+	var send = { "graph": JSON.stringify(graph),
+				 "title": graphTitle,
+				 "input": JSON.stringify(input),
+				 "graph_id": graph_id
+				};
+
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(JSON.stringify(send));
+
+	saveFeedback();
+}
+
+
+function saveCSV(){
+	window.location.href = window.location.href.replace("maps", "csv_download");
+}
+
+
+function saveFeedback(){
+	var button = document.getElementById("saveButton");
+	var buttonIcon = document.getElementById("saveButtonIcon");
+	var buttonText = document.getElementById("saveButtonText");
+	buttonIcon.classList.remove('far');
+	buttonIcon.classList.remove('fa-save');
+	button.classList.remove('btn-primary');
+
+	buttonIcon.classList.add('fas');
+	buttonIcon.classList.add('fa-check');
+	button.classList.add('btn-success');
+
+	buttonText.textContent = "Gepeichert";
+}
+
+function clearInputs(){
+	window.location.href = window.location.href;
+}
+
+</script>
+{% endblock noContainer %}

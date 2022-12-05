@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<button class="btn btn-primary btn-lg" style="display:none;" id="btnTrigger" data-toggle="modal" data-target="#confirmDelete"></button>
+
+<!-- Modal confirm delete graph-->
+<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Graph löschen?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="confirmDeleteModalBody" class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmDelete()">Löschen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for graph in graphs %}
+<!-- add border -->
+<div id="border-{{loop.index0}}" style="border-radius:20px; box-shadow: 1px 1px 3px grey;"
+	 class="border mt-4 mb-5">
+	<!-- set map in border -->
+	<div id="chart-{{loop.index0}}" class="chart mt-5"></div>
+	<!-- do not show non-visible graphs for users not logged in -->
+	{% if not current_user.is_authenticated %}
+	<script>
+		if({{graphs|safe}}[{{loop.index0}}].visible == "false"){
+			if(document.getElementById("chart-" + {{loop.index0}}) != null){
+				var elemMap = document.getElementById("border-" + {{loop.index0}});
+    			elemMap.parentNode.removeChild(elemMap);
+    		}
+		}
+	</script>
+	{% endif %}
+
+	<div class="row mb-3 ml-3">
+		<!--buttons only accessible for admins-->
+		{% if current_user.is_authenticated %}
+		<div id="delete-{{loop.index0}}" class="btn btn-danger fas fa-trash" style="font-size:20px"
+			 onclick="deleteGraph({{loop.index0}})"></div>
+		<div id="visible-{{loop.index0}}" class="btn btn-secondary ml-3" style="font-size:20px"
+			 onclick="graphVisible({{loop.index0}})"></div>
+		<div id="edit-{{loop.index0}}" class="btn btn-secondary far fa-edit ml-3" style="font-size:20px"
+			 onclick="editGraph({{loop.index0}})"></div>
+		<div id="favorite-{{loop.index0}}" class="btn btn-secondary ml-3" style="font-size:20px"
+		data-toggle="modal" data-target="#favoriteModal-{{loop.index0}}"
+			 onclick="setFavorite({{loop.index0}})"></div>
+		{% endif %}
+		<div id="title-{{loop.index0}}" class="ml-3" style="font-size:22px; font-weight:500"></div>
+	</div>
+</div>
+<!-- change the button depending on whether the graph is visible/favorite or not-->
+<script>
+	if({{graphs|safe}}[{{loop.index0}}].visible == "true"){
+		if(document.getElementById("visible-" + {{loop.index0}}) != null){
+			document.getElementById("visible-" + {{loop.index0}}).classList.add('fas');
+			document.getElementById("visible-" + {{loop.index0}}).classList.add('fa-eye-slash');
+		}
+	}
+	else{
+		if(document.getElementById("visible-" + {{loop.index0}}) != null){
+			document.getElementById("visible-" + {{loop.index0}}).classList.add('fas');
+			document.getElementById("visible-" + {{loop.index0}}).classList.add('fa-eye');
+		}
+	}
+
+	favoriteJson = JSON.parse({{graphs|safe}}[{{loop.index0}}].favorite);
+	if(favoriteJson["is_favorite"]){
+		if(document.getElementById("favorite-" + {{loop.index0}}) != null){
+			document.getElementById("favorite-" + {{loop.index0}}).classList.add('fas');
+			document.getElementById("favorite-" + {{loop.index0}}).classList.add('fa-star');
+
+			document.getElementById("favorite-" + {{loop.index0}}).removeAttribute("data-toggle");
+			document.getElementById("favorite-" + {{loop.index0}}).removeAttribute("data-target");
+		}
+	}
+	else{
+		if(document.getElementById("favorite-" + {{loop.index0}}) != null){
+			document.getElementById("favorite-" + {{loop.index0}}).classList.add('far');
+			document.getElementById("favorite-" + {{loop.index0}}).classList.add('fa-star');
+		}
+	}
+
+	document.getElementById("title-" + {{loop.index0}}).textContent = {{graphs|safe}}[{{loop.index0}}].title;
+</script>
+{% endfor %}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+data = {{graphs|safe}};
+for (i = 0; i < {{graphs|safe}}.length; i++){
+	if(document.getElementById("chart-" + i) != null){
+		Plotly.plot('chart-' + i, JSON.parse(data[i].data), {});
+	}
+}
+
+var graphDeleteIndex;
+
+function deleteGraph(index){
+	graphDeleteIndex = index;
+
+	var json = { "id":{{graphs|safe}}[index]._id, "method":"delete" }
+    var current_url = window.location.href;
+    var url = current_url.replace('display_charts', 'modify_chart');
+
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+	req.onreadystatechange = function () {
+	  if(req.readyState === XMLHttpRequest.DONE) {
+		var status = req.status;
+		if (status === 0 || (status >= 200 && status < 400)) {
+			if(req.responseText == "true"){
+				document.getElementById("btnTrigger").click();
+				document.getElementById("confirmDeleteModalBody").textContent = "Der ausgewählte Graph befindet sich in einem Dashboard. Soll der Graph wirklich gelöscht werden? Das zugehörige Dashboard würde somit auch gelöscht werden.";
+			}
+			else{
+				confirmDelete()
+			}
+	  	}
+	  }
+	};
+	req.send(JSON.stringify(json));
+}
+
+
+function confirmDelete(){
+	var id = {{graphs|safe}}[graphDeleteIndex]._id;
+	var current_url = window.location.href;
+    var url = current_url.replace('display_charts', 'delete_chart');
+
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(id);
+	removeGraphGUI(graphDeleteIndex);
+}
+
+
+function removeGraphGUI(index){
+	var elemGraph = document.getElementById("chart-" + index);
+    elemGraph.parentNode.removeChild(elemGraph);
+    var elemDelete = document.getElementById("delete-" + index);
+    elemDelete.parentNode.removeChild(elemDelete);
+    var elemVisible = document.getElementById("visible-" + index);
+    elemVisible.parentNode.removeChild(elemVisible);
+    var elemTitle = document.getElementById("title-" + index);
+    elemTitle.parentNode.removeChild(elemTitle);
+    var elemBorder = document.getElementById("border-" + index);
+	elemBorder.parentNode.removeChild(elemBorder);
+}
+
+
+function graphVisible(index){
+	var json = { "id":{{graphs|safe}}[index]._id, "method":"visible" }
+    var current_url = window.location.href;
+    var url = current_url.replace('display_charts', 'modify_chart');
+
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(JSON.stringify(json));
+
+	if(document.getElementById("visible-" + index).classList.contains('fa-eye-slash')){
+		document.getElementById("visible-" + index).classList.remove('fas');
+		document.getElementById("visible-" + index).classList.remove('fa-eye-slash');
+
+		document.getElementById("visible-" + index).classList.add('fas');
+		document.getElementById("visible-" + index).classList.add('fa-eye');
+	}
+	else {
+		document.getElementById("visible-" + index).classList.remove('fas');
+		document.getElementById("visible-" + index).classList.remove('fa-eye');
+
+		document.getElementById("visible-" + index).classList.add('fas');
+		document.getElementById("visible-" + index).classList.add('fa-eye-slash');
+	}
+}
+
+function editGraph(index){
+    var current_url = window.location.href;
+    var url = current_url.replace('display_charts', 'charts/' + {{graphs|safe}}[index]._id);
+
+	window.location.href = url
+}
+
+function setFavorite(index){
+	var json = { "id":{{graphs|safe}}[index]._id, "method":"favorite" }
+    var current_url = window.location.href;
+    var url = current_url.replace('display_charts', 'modify_chart');
+
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(JSON.stringify(json));
+
+	if(document.getElementById("favorite-" + index).classList.contains('far')){
+		document.getElementById("favorite-" + index).classList.remove('far');
+		document.getElementById("favorite-" + index).classList.add('fas');
+
+		document.getElementById("favorite-" + index).setAttribute("data-toggle", "modal");
+		document.getElementById("favorite-" + index).setAttribute("data-target", "#favoriteModal-" + index);
+	}
+	else {
+		document.getElementById("favorite-" + index).classList.remove('fas');
+		document.getElementById("favorite-" + index).classList.add('far');
+
+		document.getElementById("favorite-" + index).removeAttribute("data-toggle");
+		document.getElementById("favorite-" + index).removeAttribute("data-target");
+	}
+}
+</script>
+
+{% endblock content %}

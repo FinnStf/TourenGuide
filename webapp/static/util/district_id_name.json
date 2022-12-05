@@ -1,0 +1,2054 @@
+[
+	{
+		"id": "006238100",
+		"name": "Ingolstadt - Nordost"
+	},
+	{
+		"id": "006272700",
+		"name": "Straubing-Bogen - Landkreis Straubing-Bogen"
+	},
+	{
+		"id": "006253900",
+		"name": "Düsseldorf - Stadtbezirk 10"
+	},
+	{
+		"id": "280639000",
+		"name": "Sigmaringen - Landkreis Sigmaringen"
+	},
+	{
+		"id": "006272600",
+		"name": "Garmisch-Partenkirchen - Landkreis Garmisch-Partenkirchen"
+	},
+	{
+		"id": "006261300",
+		"name": "Northeim - Landkreis Northeim"
+	},
+	{
+		"id": "006272800",
+		"name": "Nienburg (Weser) - Landkreis Nienburg/Weser"
+	},
+	{
+		"id": "006261500",
+		"name": "Vulkaneifel - Landkreis Vulkaneifel"
+	},
+	{
+		"id": "006261400",
+		"name": "Kelheim - Landkreis Kelheim"
+	},
+	{
+		"id": "006264602",
+		"name": "Bielefeld - Gadderbaum"
+	},
+	{
+		"id": "143151700",
+		"name": "Vorpommern-Greifswald"
+	},
+	{
+		"id": "006261000",
+		"name": "Rhein-Pfalz-Kreis"
+	},
+	{
+		"id": "006269302",
+		"name": "Jena - Maua"
+	},
+	{
+		"id": "006265901",
+		"name": "Salzgitter - Ortschaft Nordwest"
+	},
+	{
+		"id": "006261700",
+		"name": "Rotenburg (Wümme)"
+	},
+	{
+		"id": "006261600",
+		"name": "Wartburgkreis"
+	},
+	{
+		"id": "006261800",
+		"name": "Schmalkalden-Meiningen - Landkreis Schmalkalden-Meiningen"
+	},
+	{
+		"id": "006250200",
+		"name": "Salzlandkreis"
+	},
+	{
+		"id": "006250500",
+		"name": "Elbe-Elster"
+	},
+	{
+		"id": "667985902",
+		"name": "Göttingen - Staufenberg"
+	},
+	{
+		"id": "006273300",
+		"name": "Segeberg"
+	},
+	{
+		"id": "006273600",
+		"name": "Schwalm-Eder-Kreis"
+	},
+	{
+		"id": "006247300",
+		"name": "Saalekreis"
+	},
+	{
+		"id": "006250800",
+		"name": "Bonn - Stadtbezirk Bonn"
+	},
+	{
+		"id": "006250000",
+		"name": "Eichsfeld - Landkreis Eichsfeld"
+	},
+	{
+		"id": "006247200",
+		"name": "Bad Tölz-Wolfratshausen - Landkreis Bad Tölz-Wolfratshausen"
+	},
+	{
+		"id": "006273000",
+		"name": "Bergstraße - Kreis Bergstraße"
+	},
+	{
+		"id": "279757300",
+		"name": "Zollernalbkreis"
+	},
+	{
+		"id": "006240004",
+		"name": "Frankfurt am Main - Niederrad"
+	},
+	{
+		"id": "006247400",
+		"name": "Neunkirchen - Landkreis Neunkirchen"
+	},
+	{
+		"id": "006257200",
+		"name": "Mayen-Koblenz - Mayen"
+	},
+	{
+		"id": "006259800",
+		"name": "Kassel - Vorderer Westen"
+	},
+	{
+		"id": "006273100",
+		"name": "Wesermarsch - Landkreis Wesermarsch"
+	},
+	{
+		"id": "006247100",
+		"name": "Pforzheim"
+	},
+	{
+		"id": "006247000",
+		"name": "Brandenburg an der Havel"
+	},
+	{
+		"id": "002702700",
+		"name": "Lübeck - Travemünde"
+	},
+	{
+		"id": "006273800",
+		"name": "Prignitz"
+	},
+	{
+		"id": "006238102",
+		"name": "Ingolstadt - West"
+	},
+	{
+		"id": "006273700",
+		"name": "Donnersbergkreis"
+	},
+	{
+		"id": "006247700",
+		"name": "Jerichower Land"
+	},
+	{
+		"id": "006262400",
+		"name": "Ortenaukreis"
+	},
+	{
+		"id": "002702000",
+		"name": "Flensburg"
+	},
+	{
+		"id": "006262300",
+		"name": "Ahrweiler - Landkreis Ahrweiler"
+	},
+	{
+		"id": "006247600",
+		"name": "Kleve - Kreis Kleve"
+	},
+	{
+		"id": "006273900",
+		"name": "Rhön-Grabfeld - Landkreis Rhön-Grabfeld"
+	},
+	{
+		"id": "006262600",
+		"name": "Neckar-Odenwald-Kreis"
+	},
+	{
+		"id": "006274204",
+		"name": "Hildesheim - Neuhof/Marienrode/Hildesheimer Wald"
+	},
+	{
+		"id": "006247800",
+		"name": "Wuppertal"
+	},
+	{
+		"id": "028586400",
+		"name": "Heidelberg - Rohrbach"
+	},
+	{
+		"id": "006262000",
+		"name": "Neumarkt i.d. OPf. - Landkreis Neumarkt in der Oberpfalz"
+	},
+	{
+		"id": "180029700",
+		"name": "Hagen - Hagen-Mitte"
+	},
+	{
+		"id": "006262200",
+		"name": "Augsburg - Landkreis Augsburg"
+	},
+	{
+		"id": "006259400",
+		"name": "Chemnitz"
+	},
+	{
+		"id": "006240500",
+		"name": "Rostock - Ortsbeirat 7 : Schmarl"
+	},
+	{
+		"id": "006262100",
+		"name": "Nordhausen - Landkreis Nordhausen"
+	},
+	{
+		"id": "006259600",
+		"name": "Odenwaldkreis"
+	},
+	{
+		"id": "006259500",
+		"name": "Fürstenfeldbruck - Landkreis Fürstenfeldbruck"
+	},
+	{
+		"id": "006259000",
+		"name": "Memmingen"
+	},
+	{
+		"id": "006248000",
+		"name": "Herford - Kreis Herford"
+	},
+	{
+		"id": "006262800",
+		"name": "Oder-Spree"
+	},
+	{
+		"id": "006259200",
+		"name": "Rottal-Inn - Landkreis Rottal-Inn"
+	},
+	{
+		"id": "006262700",
+		"name": "Bamberg - Landkreis Bamberg"
+	},
+	{
+		"id": "006262900",
+		"name": "Passau"
+	},
+	{
+		"id": "214517900",
+		"name": "Hof - Landkreis Hof"
+	},
+	{
+		"id": "006274500",
+		"name": "Erfurt"
+	},
+	{
+		"id": "006274300",
+		"name": "Uelzen"
+	},
+	{
+		"id": "208349700",
+		"name": "Harburg"
+	},
+	{
+		"id": "006259700",
+		"name": "Cloppenburg - Landkreis Cloppenburg"
+	},
+	{
+		"id": "006274400",
+		"name": "Nürnberger Land - Landkreis Nürnberger Land"
+	},
+	{
+		"id": "006274700",
+		"name": "Anhalt-Bitterfeld"
+	},
+	{
+		"id": "006248400",
+		"name": "Landshut"
+	},
+	{
+		"id": "006274600",
+		"name": "Rheingau-Taunus-Kreis"
+	},
+	{
+		"id": "006248200",
+		"name": "Stade"
+	},
+	{
+		"id": "006248300",
+		"name": "Lippe - Kreis Lippe"
+	},
+	{
+		"id": "280407800",
+		"name": "Alb-Donau-Kreis"
+	},
+	{
+		"id": "214517800",
+		"name": "Kulmbach - Landkreis Kulmbach"
+	},
+	{
+		"id": "006274100",
+		"name": "Bad Kreuznach - Landkreis Bad Kreuznach"
+	},
+	{
+		"id": "006240502",
+		"name": "Rostock - Ortsbeirat 18 : Gehlsdrf,Hinrichsdorf,Jürgenshof,Krummendorf,Nienhagen,Peez,Stuthof"
+	},
+	{
+		"id": "006274000",
+		"name": "Verden - Landkreis Verden"
+	},
+	{
+		"id": "006248500",
+		"name": "Sächsische Schweiz-Osterzgebirge"
+	},
+	{
+		"id": "667985901",
+		"name": "Göttingen - Gieboldehausen"
+	},
+	{
+		"id": "006248100",
+		"name": "Magdeburg"
+	},
+	{
+		"id": "006274800",
+		"name": "Krefeld"
+	},
+	{
+		"id": "006248800",
+		"name": "Oberhavel"
+	},
+	{
+		"id": "006257800",
+		"name": "Köln - Rodenkirchen"
+	},
+	{
+		"id": "006248900",
+		"name": "Viersen - Kreis Viersen"
+	},
+	{
+		"id": "006252600",
+		"name": "Dessau-Roßlau - Streetz"
+	},
+	{
+		"id": "006238803",
+		"name": "Rastatt - Bühlertal"
+	},
+	{
+		"id": "006278200",
+		"name": "Hamburg - Harburg"
+	},
+	{
+		"id": "006264002",
+		"name": "Bayreuth - Birken, Quellhöfe"
+	},
+	{
+		"id": "028586402",
+		"name": "Heidelberg - Ziegelhausen"
+	},
+	{
+		"id": "006269101",
+		"name": "Mannheim - Neckarstadt-Ost/Wohlgelegen"
+	},
+	{
+		"id": "006264902",
+		"name": "Leipzig - Nord"
+	},
+	{
+		"id": "279310400",
+		"name": "Stuttgart - Hedelfingen"
+	},
+	{
+		"id": "017267900",
+		"name": "Trier - Nord"
+	},
+	{
+		"id": "006265102",
+		"name": "Regionalverband Saarbrücken - Großrosseln"
+	},
+	{
+		"id": "006252201",
+		"name": "Gelsenkirchen - Gelsenkirchen-Nord"
+	},
+	{
+		"id": "006249500",
+		"name": "Ulm"
+	},
+	{
+		"id": "006249300",
+		"name": "Weimar"
+	},
+	{
+		"id": "019164501",
+		"name": "Dresden - Langebrück"
+	},
+	{
+		"id": "006243702",
+		"name": "Siegen-Wittgenstein - Wilnsdorf"
+	},
+	{
+		"id": "006249400",
+		"name": "Peine - Landkreis Peine"
+	},
+	{
+		"id": "006249700",
+		"name": "Aschaffenburg - Landkreis Aschaffenburg"
+	},
+	{
+		"id": "006249100",
+		"name": "Wunsiedel i. Fichtelgebirge - Landkreis Wunsiedel im Fichtelgebirge"
+	},
+	{
+		"id": "006273400",
+		"name": "Oberhausen - Alt-Oberhausen"
+	},
+	{
+		"id": "006265801",
+		"name": "Bremerhaven - Stadtbezirk Bremerhaven-Süd"
+	},
+	{
+		"id": "006257204",
+		"name": "Mayen-Koblenz - Urmitz"
+	},
+	{
+		"id": "006264000",
+		"name": "Bayreuth - Sankt Johannis"
+	},
+	{
+		"id": "006249200",
+		"name": "Altenburger Land"
+	},
+	{
+		"id": "006242800",
+		"name": "München - Stadtbezirk 25 Laim"
+	},
+	{
+		"id": "006252602",
+		"name": "Dessau-Roßlau - Törten"
+	},
+	{
+		"id": "006240001",
+		"name": "Frankfurt am Main - Rödelheim"
+	},
+	{
+		"id": "006249900",
+		"name": "Hamm"
+	},
+	{
+		"id": "006249800",
+		"name": "Landsberg am Lech - Landkreis Landsberg am Lech"
+	},
+	{
+		"id": "189150600",
+		"name": "Olpe - Kreis Olpe"
+	},
+	{
+		"id": "006271900",
+		"name": "Zweibrücken - Stadtmitte"
+	},
+	{
+		"id": "002701400",
+		"name": "Schleswig-Flensburg"
+	},
+	{
+		"id": "215636300",
+		"name": "Traunstein - Landkreis Traunstein"
+	},
+	{
+		"id": "215636200",
+		"name": "Rosenheim - Landkreis Rosenheim"
+	},
+	{
+		"id": "017267901",
+		"name": "Trier - Ehrang-Quint"
+	},
+	{
+		"id": "002701900",
+		"name": "Nordfriesland"
+	},
+	{
+		"id": "006253104",
+		"name": "Braunschweig - Broitzem"
+	},
+	{
+		"id": "002701600",
+		"name": "Steinburg"
+	},
+	{
+		"id": "002701700",
+		"name": "Rendsburg-Eckernförde"
+	},
+	{
+		"id": "006276401",
+		"name": "Region Hannover - Springe"
+	},
+	{
+		"id": "173937700",
+		"name": "Rostock - Landkreis Rostock"
+	},
+	{
+		"id": "006264003",
+		"name": "Bayreuth - Festspielhügel, Grüner Baum"
+	},
+	{
+		"id": "173937900",
+		"name": "Vorpommern-Rügen"
+	},
+	{
+		"id": "006259100",
+		"name": "Münster - Münster-West"
+	},
+	{
+		"id": "006249600",
+		"name": "Wiesbaden - Auringen"
+	},
+	{
+		"id": "006264901",
+		"name": "Leipzig - Mitte"
+	},
+	{
+		"id": "006253100",
+		"name": "Braunschweig - Innenstadt"
+	},
+	{
+		"id": "006252200",
+		"name": "Gelsenkirchen - Gelsenkirchen-Ost"
+	},
+	{
+		"id": "006257201",
+		"name": "Mayen-Koblenz - Dieblich"
+	},
+	{
+		"id": "002702500",
+		"name": "Ostholstein"
+	},
+	{
+		"id": "006238500",
+		"name": "Mülheim an der Ruhr - Rechtsruhr-Nord"
+	},
+	{
+		"id": "006274202",
+		"name": "Hildesheim - Achtum-Uppen"
+	},
+	{
+		"id": "002702100",
+		"name": "Kiel"
+	},
+	{
+		"id": "006257203",
+		"name": "Mayen-Koblenz - Saffig"
+	},
+	{
+		"id": "173938100",
+		"name": "Ludwigslust-Parchim"
+	},
+	{
+		"id": "006238802",
+		"name": "Rastatt - Kuppenheim"
+	},
+	{
+		"id": "006264001",
+		"name": "Bayreuth - Roter Hügel, Herzoghöhe, Kreuz"
+	},
+	{
+		"id": "173938000",
+		"name": "Nordwestmecklenburg"
+	},
+	{
+		"id": "002702600",
+		"name": "Plön"
+	},
+	{
+		"id": "006274200",
+		"name": "Hildesheim - Bockenem"
+	},
+	{
+		"id": "006235200",
+		"name": "Speyer"
+	},
+	{
+		"id": "002702800",
+		"name": "Dithmarschen"
+	},
+	{
+		"id": "281285000",
+		"name": "Heidenheim - Landkreis Heidenheim"
+	},
+	{
+		"id": "006242201",
+		"name": "Berlin - Steglitz-Zehlendorf"
+	},
+	{
+		"id": "006235400",
+		"name": "Freudenstadt - Landkreis Freudenstadt"
+	},
+	{
+		"id": "006235300",
+		"name": "Potsdam-Mittelmark"
+	},
+	{
+		"id": "281285200",
+		"name": "Göppingen - Landkreis Göppingen"
+	},
+	{
+		"id": "006243100",
+		"name": "Roth - Landkreis Roth"
+	},
+	{
+		"id": "281285100",
+		"name": "Esslingen - Landkreis Esslingen"
+	},
+	{
+		"id": "006243000",
+		"name": "Cottbus"
+	},
+	{
+		"id": "006235000",
+		"name": "Mittelsachsen"
+	},
+	{
+		"id": "006235900",
+		"name": "Börde"
+	},
+	{
+		"id": "279703600",
+		"name": "Tübingen - Landkreis Tübingen"
+	},
+	{
+		"id": "006272401",
+		"name": "Neustadt an der Weinstraße - Diedesfeld"
+	},
+	{
+		"id": "006235600",
+		"name": "Erding - Landkreis Erding"
+	},
+	{
+		"id": "006235500",
+		"name": "Aurich - Landkreis Aurich"
+	},
+	{
+		"id": "006235800",
+		"name": "Minden-Lübbecke - Kreis Minden-Lübbecke"
+	},
+	{
+		"id": "006243200",
+		"name": "Saale-Holzland-Kreis"
+	},
+	{
+		"id": "006235700",
+		"name": "Altenkirchen (Westerwald) - Landkreis Altenkirchen"
+	},
+	{
+		"id": "006243400",
+		"name": "Leipzig"
+	},
+	{
+		"id": "006255000",
+		"name": "Grafschaft Bentheim - Landkreis Grafschaft Bentheim"
+	},
+	{
+		"id": "006255200",
+		"name": "Sonneberg - Landkreis Sonneberg"
+	},
+	{
+		"id": "006270100",
+		"name": "Kempten (Allgäu)"
+	},
+	{
+		"id": "006252601",
+		"name": "Dessau-Roßlau - Kochstedt"
+	},
+	{
+		"id": "006270000",
+		"name": "Fulda - Landkreis Fulda"
+	},
+	{
+		"id": "006270300",
+		"name": "Herzogtum Lauenburg"
+	},
+	{
+		"id": "006255800",
+		"name": "Wolfenbüttel - Landkreis Wolfenbüttel"
+	},
+	{
+		"id": "006264900",
+		"name": "Leipzig - Südwest"
+	},
+	{
+		"id": "006270900",
+		"name": "Regen - Landkreis Regen"
+	},
+	{
+		"id": "006242802",
+		"name": "München - Stadtbezirk 10 Moosach"
+	},
+	{
+		"id": "183101500",
+		"name": "Märkischer Kreis"
+	},
+	{
+		"id": "006255400",
+		"name": "Weiden i.d. OPf. - Weiden in der Oberpfalz"
+	},
+	{
+		"id": "006270800",
+		"name": "Ostalbkreis"
+	},
+	{
+		"id": "006255300",
+		"name": "Barnim"
+	},
+	{
+		"id": "006236200",
+		"name": "Westerwaldkreis"
+	},
+	{
+		"id": "006249603",
+		"name": "Wiesbaden - Klarenthal"
+	},
+	{
+		"id": "006236500",
+		"name": "Hildburghausen - Landkreis Hildburghausen"
+	},
+	{
+		"id": "006255600",
+		"name": "Dachau - Landkreis Dachau"
+	},
+	{
+		"id": "006244000",
+		"name": "Soest - Kreis Soest"
+	},
+	{
+		"id": "006236400",
+		"name": "Teltow-Fläming"
+	},
+	{
+		"id": "006255500",
+		"name": "Euskirchen - Kreis Euskirchen"
+	},
+	{
+		"id": "006270400",
+		"name": "Darmstadt-Dieburg - Landkreis Darmstadt-Dieburg"
+	},
+	{
+		"id": "006244200",
+		"name": "Steinfurt - Kreis Steinfurt"
+	},
+	{
+		"id": "006270700",
+		"name": "Dingolfing-Landau - Landkreis Dingolfing-Landau"
+	},
+	{
+		"id": "006270600",
+		"name": "Warendorf - Kreis Warendorf"
+	},
+	{
+		"id": "006236100",
+		"name": "Trier-Saarburg - Landkreis Trier-Saarburg"
+	},
+	{
+		"id": "006267100",
+		"name": "Gera"
+	},
+	{
+		"id": "006236000",
+		"name": "Südwestpfalz - Landkreis Südwestpfalz"
+	},
+	{
+		"id": "006267300",
+		"name": "Osnabrück - Landkreis Osnabrück"
+	},
+	{
+		"id": "006267200",
+		"name": "Lindau (Bodensee) - Landkreis Lindau"
+	},
+	{
+		"id": "006244800",
+		"name": "Erlangen-Höchstadt - Landkreis Erlangen-Höchstadt"
+	},
+	{
+		"id": "006244700",
+		"name": "Saalfeld-Rudolstadt - Landkreis Saalfeld-Rudolstadt"
+	},
+	{
+		"id": "006236700",
+		"name": "Kusel - Landkreis Kusel"
+	},
+	{
+		"id": "006244900",
+		"name": "Leverkusen"
+	},
+	{
+		"id": "006236900",
+		"name": "Potsdam"
+	},
+	{
+		"id": "006244400",
+		"name": "Wilhelmshaven"
+	},
+	{
+		"id": "006267900",
+		"name": "Birkenfeld - Landkreis Birkenfeld"
+	},
+	{
+		"id": "006244300",
+		"name": "Rhein-Lahn-Kreis"
+	},
+	{
+		"id": "006236800",
+		"name": "Lahn-Dill-Kreis"
+	},
+	{
+		"id": "006244500",
+		"name": "Greiz"
+	},
+	{
+		"id": "006245601",
+		"name": "Duisburg - Homberg/Ruhrort/Baerl"
+	},
+	{
+		"id": "006267400",
+		"name": "Heidekreis"
+	},
+	{
+		"id": "006242803",
+		"name": "München - Stadtbezirk 15 Trudering-Riem"
+	},
+	{
+		"id": "006265100",
+		"name": "Regionalverband Saarbrücken - Fürstenhausen"
+	},
+	{
+		"id": "006271300",
+		"name": "Essen - Stadtbezirk VI"
+	},
+	{
+		"id": "006256100",
+		"name": "Coburg - Landkreis Coburg"
+	},
+	{
+		"id": "006274203",
+		"name": "Hildesheim - Sehlem"
+	},
+	{
+		"id": "280415600",
+		"name": "Biberach - Landkreis Biberach"
+	},
+	{
+		"id": "006256300",
+		"name": "Waldeck-Frankenberg - Landkreis Waldeck-Frankenberg"
+	},
+	{
+		"id": "006256200",
+		"name": "Emden"
+	},
+	{
+		"id": "208346600",
+		"name": "Freyung-Grafenau - Landkreis Freyung-Grafenau"
+	},
+	{
+		"id": "006241700",
+		"name": "Paderborn - Salzkotten"
+	},
+	{
+		"id": "006256900",
+		"name": "Cochem-Zell - Landkreis Cochem-Zell"
+	},
+	{
+		"id": "006237400",
+		"name": "Fürth"
+	},
+	{
+		"id": "006256500",
+		"name": "Regensburg - Landkreis Regensburg"
+	},
+	{
+		"id": "006237300",
+		"name": "Oberbergischer Kreis"
+	},
+	{
+		"id": "006276404",
+		"name": "Region Hannover - Burgdorf"
+	},
+	{
+		"id": "006245100",
+		"name": "Kaiserslautern - Landkreis Kaiserslautern"
+	},
+	{
+		"id": "006256700",
+		"name": "Leer - Landkreis Leer"
+	},
+	{
+		"id": "006237600",
+		"name": "Dahme-Spreewald"
+	},
+	{
+		"id": "006256600",
+		"name": "Hochtaunuskreis"
+	},
+	{
+		"id": "006245000",
+		"name": "Suhl"
+	},
+	{
+		"id": "006237000",
+		"name": "Eisenach"
+	},
+	{
+		"id": "006245300",
+		"name": "Worms"
+	},
+	{
+		"id": "006242804",
+		"name": "München - Stadtbezirk 23 Allach-Untermenzing"
+	},
+	{
+		"id": "667985900",
+		"name": "Göttingen - Bilshausen"
+	},
+	{
+		"id": "006245200",
+		"name": "Düren - Kreis Düren"
+	},
+	{
+		"id": "006268200",
+		"name": "Tuttlingen - Landkreis Tuttlingen"
+	},
+	{
+		"id": "006268100",
+		"name": "Mansfeld-Südharz"
+	},
+	{
+		"id": "006237100",
+		"name": "Pfaffenhofen a.d. Ilm - Landkreis Pfaffenhofen an der Ilm"
+	},
+	{
+		"id": "006268400",
+		"name": "Eichstätt - Landkreis Eichstätt"
+	},
+	{
+		"id": "006268300",
+		"name": "Spree-Neiße"
+	},
+	{
+		"id": "006245800",
+		"name": "Starnberg - Landkreis Starnberg"
+	},
+	{
+		"id": "006237800",
+		"name": "Bayreuth - Landkreis Bayreuth"
+	},
+	{
+		"id": "006268000",
+		"name": "Alzey-Worms - Landkreis Alzey-Worms"
+	},
+	{
+		"id": "006237700",
+		"name": "Aichach-Friedberg - Landkreis Aichach-Friedberg"
+	},
+	{
+		"id": "006268900",
+		"name": "Ammerland - Landkreis Ammerland"
+	},
+	{
+		"id": "006245400",
+		"name": "Bad Dürkheim - Landkreis Bad Dürkheim"
+	},
+	{
+		"id": "006237900",
+		"name": "Gütersloh - Kreis Gütersloh"
+	},
+	{
+		"id": "006245700",
+		"name": "Kitzingen - Landkreis Kitzingen"
+	},
+	{
+		"id": "006268600",
+		"name": "Schwandorf - Landkreis Schwandorf"
+	},
+	{
+		"id": "006276402",
+		"name": "Region Hannover - Herrenhausen-Stöcken"
+	},
+	{
+		"id": "006268500",
+		"name": "Schwerin"
+	},
+	{
+		"id": "097533900",
+		"name": "Neustadt a.d. Waldnaab - Landkreis Neustadt an der Waldnaab"
+	},
+	{
+		"id": "006257100",
+		"name": "Oberspreewald-Lausitz"
+	},
+	{
+		"id": "006268700",
+		"name": "Forchheim - Landkreis Forchheim"
+	},
+	{
+		"id": "006257400",
+		"name": "Ostprignitz-Ruppin"
+	},
+	{
+		"id": "006258101",
+		"name": "Darmstadt - Eberstadt"
+	},
+	{
+		"id": "006259101",
+		"name": "Münster - Münster-Ost"
+	},
+	{
+		"id": "006257300",
+		"name": "Frankenthal (Pfalz) - Eppstein"
+	},
+	{
+		"id": "279310402",
+		"name": "Stuttgart - Bad Cannstatt"
+	},
+	{
+		"id": "006257900",
+		"name": "Saarpfalz-Kreis"
+	},
+	{
+		"id": "006264600",
+		"name": "Bielefeld - Jöllenbeck"
+	},
+	{
+		"id": "002702703",
+		"name": "Lübeck - Innenstadt"
+	},
+	{
+		"id": "006238400",
+		"name": "Bautzen"
+	},
+	{
+		"id": "006257500",
+		"name": "Tirschenreuth - Landkreis Tirschenreuth"
+	},
+	{
+		"id": "006246200",
+		"name": "Weimarer Land - Landkreis Weimarer Land"
+	},
+	{
+		"id": "006238700",
+		"name": "Merzig-Wadern - Landkreis Merzig-Wadern"
+	},
+	{
+		"id": "019164502",
+		"name": "Dresden - Plauen"
+	},
+	{
+		"id": "006257700",
+		"name": "Rhein-Neckar-Kreis"
+	},
+	{
+		"id": "006246400",
+		"name": "Würzburg"
+	},
+	{
+		"id": "006255901",
+		"name": "Bremen - Stadtbezirk Bremen-Ost"
+	},
+	{
+		"id": "006264604",
+		"name": "Bielefeld - Senne"
+	},
+	{
+		"id": "006238300",
+		"name": "Kronach - Landkreis Kronach"
+	},
+	{
+		"id": "006269200",
+		"name": "Gießen - Landkreis Gießen"
+	},
+	{
+		"id": "006238200",
+		"name": "Main-Taunus-Kreis"
+	},
+	{
+		"id": "006294300",
+		"name": "Vogtlandkreis"
+	},
+	{
+		"id": "006269500",
+		"name": "Offenbach am Main"
+	},
+	{
+		"id": "006269400",
+		"name": "Main-Kinzig-Kreis"
+	},
+	{
+		"id": "006246900",
+		"name": "Neu-Ulm - Landkreis Neu-Ulm"
+	},
+	{
+		"id": "006238900",
+		"name": "Donau-Ries - Landkreis Donau-Ries"
+	},
+	{
+		"id": "006269000",
+		"name": "Schwarzwald-Baar-Kreis"
+	},
+	{
+		"id": "006246600",
+		"name": "Saarlouis - Landkreis Saarlouis"
+	},
+	{
+		"id": "006246500",
+		"name": "Würzburg - Landkreis Würzburg"
+	},
+	{
+		"id": "279310403",
+		"name": "Stuttgart - Weilimdorf"
+	},
+	{
+		"id": "006257803",
+		"name": "Köln - Kalk"
+	},
+	{
+		"id": "002702701",
+		"name": "Lübeck - Moisling"
+	},
+	{
+		"id": "006246800",
+		"name": "Gotha - Landkreis Gotha"
+	},
+	{
+		"id": "006271302",
+		"name": "Essen - Stadtbezirk II"
+	},
+	{
+		"id": "006251200",
+		"name": "Koblenz"
+	},
+	{
+		"id": "006269900",
+		"name": "Solingen"
+	},
+	{
+		"id": "006269800",
+		"name": "Germersheim - Landkreis Germersheim"
+	},
+	{
+		"id": "006258200",
+		"name": "Schwäbisch Hall - Landkreis Schwäbisch Hall"
+	},
+	{
+		"id": "006258500",
+		"name": "Limburg-Weilburg - Landkreis Limburg-Weilburg"
+	},
+	{
+		"id": "006253904",
+		"name": "Düsseldorf - Stadtbezirk 6"
+	},
+	{
+		"id": "006258400",
+		"name": "Eifelkreis Bitburg-Prüm"
+	},
+	{
+		"id": "208474600",
+		"name": "Lüneburg"
+	},
+	{
+		"id": "002702702",
+		"name": "Lübeck - Sankt Gertrud"
+	},
+	{
+		"id": "006242200",
+		"name": "Berlin - Reinickendorf"
+	},
+	{
+		"id": "006258000",
+		"name": "München - Landkreis München"
+	},
+	{
+		"id": "006277002",
+		"name": "Recklinghausen - Herten"
+	},
+	{
+		"id": "194611700",
+		"name": "Emmendingen - Landkreis Emmendingen"
+	},
+	{
+		"id": "006241701",
+		"name": "Paderborn"
+	},
+	{
+		"id": "006258700",
+		"name": "Lörrach - Landkreis Lörrach"
+	},
+	{
+		"id": "006249602",
+		"name": "Wiesbaden - Breckenheim"
+	},
+	{
+		"id": "006258600",
+		"name": "Werra-Meißner-Kreis"
+	},
+	{
+		"id": "006258900",
+		"name": "Hof"
+	},
+	{
+		"id": "006258800",
+		"name": "Sömmerda - Landkreis Sömmerda"
+	},
+	{
+		"id": "280662300",
+		"name": "Bodenseekreis"
+	},
+	{
+		"id": "006240003",
+		"name": "Frankfurt am Main - Nieder-Erlenbach"
+	},
+	{
+		"id": "006264603",
+		"name": "Bielefeld - Brackwede"
+	},
+	{
+		"id": "006276403",
+		"name": "Region Hannover - Wunstorf"
+	},
+	{
+		"id": "006263002",
+		"name": "Mainz - Altstadt"
+	},
+	{
+		"id": "006258100",
+		"name": "Darmstadt - Wixhausen"
+	},
+	{
+		"id": "006245600",
+		"name": "Duisburg - Rheinhausen"
+	},
+	{
+		"id": "006240002",
+		"name": "Frankfurt am Main - Gutleutviertel"
+	},
+	{
+		"id": "019164503",
+		"name": "Dresden - Pieschen"
+	},
+	{
+		"id": "006245501",
+		"name": "Remscheid - Lüttringhausen"
+	},
+	{
+		"id": "006251400",
+		"name": "Neustadt a.d. Aisch-Bad Windsheim - Landkreis Neustadt an der Aisch-Bad Windsheim"
+	},
+	{
+		"id": "279310401",
+		"name": "Stuttgart - Degerloch"
+	},
+	{
+		"id": "006251500",
+		"name": "Lichtenfels - Landkreis Lichtenfels"
+	},
+	{
+		"id": "006251000",
+		"name": "Holzminden - Landkreis Holzminden"
+	},
+	{
+		"id": "006253102",
+		"name": "Braunschweig - Wabe-Schunter-Beberbach"
+	},
+	{
+		"id": "006255902",
+		"name": "Bremen - Stadtbezirk Bremen-Nord"
+	},
+	{
+		"id": "006251100",
+		"name": "Meißen"
+	},
+	{
+		"id": "006263000",
+		"name": "Mainz - Bretzenheim"
+	},
+	{
+		"id": "006251800",
+		"name": "Karlsruhe"
+	},
+	{
+		"id": "006257802",
+		"name": "Köln - Chorweiler"
+	},
+	{
+		"id": "006240400",
+		"name": "Miltenberg - Landkreis Miltenberg"
+	},
+	{
+		"id": "006251900",
+		"name": "Wetteraukreis"
+	},
+	{
+		"id": "006240300",
+		"name": "Erlangen"
+	},
+	{
+		"id": "006240600",
+		"name": "Bad Kissingen - Landkreis Bad Kissingen"
+	},
+	{
+		"id": "006263100",
+		"name": "Osnabrück"
+	},
+	{
+		"id": "208353500",
+		"name": "Cuxhaven - Landkreis Cuxhaven"
+	},
+	{
+		"id": "006263400",
+		"name": "Bottrop"
+	},
+	{
+		"id": "006263700",
+		"name": "Hersfeld-Rotenburg - Landkreis Hersfeld-Rotenburg"
+	},
+	{
+		"id": "006240200",
+		"name": "Hochsauerlandkreis"
+	},
+	{
+		"id": "006263600",
+		"name": "Straubing"
+	},
+	{
+		"id": "006240100",
+		"name": "Kassel - Landkreis Kassel"
+	},
+	{
+		"id": "006263300",
+		"name": "Freising - Landkreis Freising"
+	},
+	{
+		"id": "006242202",
+		"name": "Berlin - Lichtenberg"
+	},
+	{
+		"id": "006255900",
+		"name": "Bremen - Stadtbezirk Bremen-West"
+	},
+	{
+		"id": "006263200",
+		"name": "Mainz-Bingen - Landkreis Mainz-Bingen"
+	},
+	{
+		"id": "006240800",
+		"name": "Pinneberg"
+	},
+	{
+		"id": "006240700",
+		"name": "Augsburg"
+	},
+	{
+		"id": "006240900",
+		"name": "Oldenburg (Oldb) - Oldenburg"
+	},
+	{
+		"id": "006241400",
+		"name": "Delmenhorst"
+	},
+	{
+		"id": "006249601",
+		"name": "Wiesbaden - Mainz-Kostheim"
+	},
+	{
+		"id": "006263900",
+		"name": "Burgenlandkreis"
+	},
+	{
+		"id": "006275000",
+		"name": "Heilbronn - Landkreis Heilbronn"
+	},
+	{
+		"id": "006263800",
+		"name": "Halle (Saale)"
+	},
+	{
+		"id": "006252500",
+		"name": "Bamberg"
+	},
+	{
+		"id": "006252400",
+		"name": "Höxter - Kreis Höxter"
+	},
+	{
+		"id": "006252700",
+		"name": "Rhein-Hunsrück-Kreis"
+	},
+	{
+		"id": "006241703",
+		"name": "Paderborn - Büren"
+	},
+	{
+		"id": "006252100",
+		"name": "Dillingen a.d. Donau - Landkreis Dillingen an der Donau"
+	},
+	{
+		"id": "005874500",
+		"name": "Wesel - Kreis Wesel"
+	},
+	{
+		"id": "006252000",
+		"name": "Haßberge - Landkreis Haßberge"
+	},
+	{
+		"id": "006233900",
+		"name": "Saale-Orla-Kreis"
+	},
+	{
+		"id": "006252300",
+		"name": "Frankfurt (Oder)"
+	},
+	{
+		"id": "006275100",
+		"name": "Heilbronn"
+	},
+	{
+		"id": "006252800",
+		"name": "Neumünster"
+	},
+	{
+		"id": "006241500",
+		"name": "Oberallgäu - Landkreis Oberallgäu"
+	},
+	{
+		"id": "006277001",
+		"name": "Recklinghausen - Marl"
+	},
+	{
+		"id": "006241600",
+		"name": "Helmstedt - Landkreis Helmstedt"
+	},
+	{
+		"id": "006241100",
+		"name": "Regensburg"
+	},
+	{
+		"id": "006241000",
+		"name": "Mönchengladbach"
+	},
+	{
+		"id": "006264800",
+		"name": "Oldenburg - Landkreis Oldenburg"
+	},
+	{
+		"id": "006241300",
+		"name": "Havelland"
+	},
+	{
+		"id": "006241200",
+		"name": "Rems-Murr-Kreis"
+	},
+	{
+		"id": "173937600",
+		"name": "Mecklenburgische Seenplatte"
+	},
+	{
+		"id": "006264700",
+		"name": "Gifhorn"
+	},
+	{
+		"id": "006264200",
+		"name": "Pirmasens"
+	},
+	{
+		"id": "006264100",
+		"name": "Main-Spessart - Landkreis Main-Spessart"
+	},
+	{
+		"id": "006264300",
+		"name": "Marburg-Biedenkopf - Landkreis Marburg-Biedenkopf"
+	},
+	{
+		"id": "006241900",
+		"name": "Ilm-Kreis"
+	},
+	{
+		"id": "006253000",
+		"name": "Schweinfurt - Landkreis Schweinfurt"
+	},
+	{
+		"id": "006241800",
+		"name": "Wolfsburg"
+	},
+	{
+		"id": "006234000",
+		"name": "Baden-Baden"
+	},
+	{
+		"id": "006243703",
+		"name": "Siegen-Wittgenstein - Siegen"
+	},
+	{
+		"id": "006234300",
+		"name": "Rheinisch-Bergischer Kreis"
+	},
+	{
+		"id": "006253600",
+		"name": "Ludwigsburg - Landkreis Ludwigsburg"
+	},
+	{
+		"id": "006253500",
+		"name": "Rhein-Kreis Neuss"
+	},
+	{
+		"id": "006253700",
+		"name": "Uckermark"
+	},
+	{
+		"id": "006234900",
+		"name": "Kaufbeuren"
+	},
+	{
+		"id": "006276700",
+		"name": "Heinsberg - Kreis Heinsberg"
+	},
+	{
+		"id": "006253200",
+		"name": "Aschaffenburg"
+	},
+	{
+		"id": "006234800",
+		"name": "Neuwied - Landkreis Neuwied"
+	},
+	{
+		"id": "006276600",
+		"name": "Hameln-Pyrmont - Landkreis Hameln-Pyrmont"
+	},
+	{
+		"id": "006242801",
+		"name": "München - Stadtbezirk 04 Schwabing-West"
+	},
+	{
+		"id": "006253400",
+		"name": "Schweinfurt"
+	},
+	{
+		"id": "006276800",
+		"name": "Freiburg im Breisgau"
+	},
+	{
+		"id": "006265600",
+		"name": "Groß-Gerau - Kreis Groß-Gerau"
+	},
+	{
+		"id": "006253300",
+		"name": "Ostallgäu - Landkreis Ostallgäu"
+	},
+	{
+		"id": "006259802",
+		"name": "Kassel - Kirchditmold"
+	},
+	{
+		"id": "006234500",
+		"name": "Görlitz"
+	},
+	{
+		"id": "006242000",
+		"name": "Unna - Kreis Unna"
+	},
+	{
+		"id": "006234400",
+		"name": "Rottweil - Landkreis Rottweil"
+	},
+	{
+		"id": "006276200",
+		"name": "Schaumburg - Landkreis Schaumburg"
+	},
+	{
+		"id": "006234700",
+		"name": "Ludwigshafen am Rhein"
+	},
+	{
+		"id": "006234600",
+		"name": "St. Wendel - Landkreis St. Wendel"
+	},
+	{
+		"id": "006276500",
+		"name": "Amberg-Sulzbach - Landkreis Amberg-Sulzbach"
+	},
+	{
+		"id": "006242600",
+		"name": "Diepholz - Landkreis Diepholz"
+	},
+	{
+		"id": "006242500",
+		"name": "Wittenberg"
+	},
+	{
+		"id": "006242700",
+		"name": "Erzgebirgskreis"
+	},
+	{
+		"id": "006253903",
+		"name": "Düsseldorf - Stadtbezirk 2"
+	},
+	{
+		"id": "006265700",
+		"name": "Landshut - Landkreis Landshut"
+	},
+	{
+		"id": "006259102",
+		"name": "Münster - Münster-Hiltrup"
+	},
+	{
+		"id": "006242400",
+		"name": "Unstrut-Hainich-Kreis"
+	},
+	{
+		"id": "667985903",
+		"name": "Göttingen - Gleichen"
+	},
+	{
+		"id": "006265900",
+		"name": "Salzgitter - Ortschaft Südost"
+	},
+	{
+		"id": "006242300",
+		"name": "Mettmann - Kreis Mettmann"
+	},
+	{
+		"id": "006255903",
+		"name": "Bremen - Stadtbezirk Bremen-Süd"
+	},
+	{
+		"id": "006243700",
+		"name": "Siegen-Wittgenstein - Hilchenbach"
+	},
+	{
+		"id": "006254100",
+		"name": "Passau - Landkreis Passau"
+	},
+	{
+		"id": "006265300",
+		"name": "Südliche Weinstraße - Landkreis Südliche Weinstraße"
+	},
+	{
+		"id": "031824800",
+		"name": "Märkisch-Oderland"
+	},
+	{
+		"id": "006265200",
+		"name": "Kaiserslautern"
+	},
+	{
+		"id": "006239000",
+		"name": "Weißenburg-Gunzenhausen - Landkreis Weißenburg-Gunzenhausen"
+	},
+	{
+		"id": "006265500",
+		"name": "Neuburg-Schrobenhausen - Landkreis Neuburg-Schrobenhausen"
+	},
+	{
+		"id": "006264401",
+		"name": "Bochum - Bochum-Nord"
+	},
+	{
+		"id": "006265400",
+		"name": "Ansbach"
+	},
+	{
+		"id": "006241702",
+		"name": "Paderborn - Altenbeken"
+	},
+	{
+		"id": "006242900",
+		"name": "Harz - Landkreis Harz"
+	},
+	{
+		"id": "006254000",
+		"name": "Emsland - Landkreis Emsland"
+	},
+	{
+		"id": "006263001",
+		"name": "Mainz - Weisenau"
+	},
+	{
+		"id": "006239600",
+		"name": "Herne"
+	},
+	{
+		"id": "006242203",
+		"name": "Berlin - Friedrichshain-Kreuzberg"
+	},
+	{
+		"id": "006269301",
+		"name": "Jena - Wöllnitz"
+	},
+	{
+		"id": "006277200",
+		"name": "Amberg"
+	},
+	{
+		"id": "006239800",
+		"name": "Unterallgäu - Landkreis Unterallgäu"
+	},
+	{
+		"id": "006277800",
+		"name": "Fürth - Landkreis Fürth"
+	},
+	{
+		"id": "006254700",
+		"name": "Nordsachsen"
+	},
+	{
+		"id": "006253103",
+		"name": "Braunschweig - Heidberg-Melverode"
+	},
+	{
+		"id": "006239700",
+		"name": "Wittmund - Landkreis Wittmund"
+	},
+	{
+		"id": "006254600",
+		"name": "Stormarn"
+	},
+	{
+		"id": "006239100",
+		"name": "Landau in der Pfalz"
+	},
+	{
+		"id": "006238101",
+		"name": "Ingolstadt - Südost"
+	},
+	{
+		"id": "006254800",
+		"name": "Cham - Landkreis Cham"
+	},
+	{
+		"id": "006239400",
+		"name": "Hohenlohekreis"
+	},
+	{
+		"id": "006254300",
+		"name": "Vogelsbergkreis"
+	},
+	{
+		"id": "006239300",
+		"name": "Karlsruhe - Landkreis Karlsruhe"
+	},
+	{
+		"id": "006272400",
+		"name": "Neustadt an der Weinstraße"
+	},
+	{
+		"id": "006254200",
+		"name": "Main-Tauber-Kreis"
+	},
+	{
+		"id": "006277900",
+		"name": "Coesfeld - Kreis Coesfeld"
+	},
+	{
+		"id": "006254400",
+		"name": "Rhein-Sieg-Kreis"
+	},
+	{
+		"id": "006277300",
+		"name": "Friesland - Landkreis Friesland"
+	},
+	{
+		"id": "006240000",
+		"name": "Frankfurt am Main - Riederwald"
+	},
+	{
+		"id": "006238801",
+		"name": "Rastatt - Gaggenau"
+	},
+	{
+		"id": "006239900",
+		"name": "Osterholz - Landkreis Osterholz"
+	},
+	{
+		"id": "006266200",
+		"name": "Lüchow-Dannenberg"
+	},
+	{
+		"id": "006266100",
+		"name": "Rhein-Erft-Kreis"
+	},
+	{
+		"id": "006266800",
+		"name": "Bernkastel-Wittlich - Landkreis Bernkastel-Wittlich"
+	},
+	{
+		"id": "006264601",
+		"name": "Bielefeld - Stieghorst"
+	},
+	{
+		"id": "006266900",
+		"name": "Goslar - Landkreis Goslar"
+	},
+	{
+		"id": "006266400",
+		"name": "Günzburg - Landkreis Günzburg"
+	},
+	{
+		"id": "006240501",
+		"name": "Rostock - Ortsbeirat 14 : Stadtmitte"
+	},
+	{
+		"id": "006266300",
+		"name": "Altötting - Landkreis Altötting"
+	},
+	{
+		"id": "006266600",
+		"name": "Vechta - Landkreis Vechta"
+	},
+	{
+		"id": "006266500",
+		"name": "Städteregion Aachen"
+	},
+	{
+		"id": "006278000",
+		"name": "Nürnberg"
+	},
+	{
+		"id": "006253101",
+		"name": "Braunschweig - Wenden-Thune-Harxbüttel"
+	},
+	{
+		"id": "006250801",
+		"name": "Bonn - Bad Godesberg"
+	},
+	{
+		"id": "019164500",
+		"name": "Dresden - Neustadt"
+	},
+	{
+		"id": "006278201",
+		"name": "Hamburg - Hamburg-Nord"
+	},
+	{
+		"id": "006257804",
+		"name": "Köln - Innenstadt"
+	},
+	{
+		"id": "182906600",
+		"name": "Ennepe-Ruhr-Kreis"
+	},
+	{
+		"id": "182906500",
+		"name": "Dortmund"
+	},
+	{
+		"id": "216823000",
+		"name": "Ebersberg - Landkreis Ebersberg"
+	},
+	{
+		"id": "006278500",
+		"name": "Zwickau"
+	},
+	{
+		"id": "006271100",
+		"name": "Deggendorf - Landkreis Deggendorf"
+	},
+	{
+		"id": "006253901",
+		"name": "Düsseldorf - Stadtbezirk 8"
+	},
+	{
+		"id": "006243701",
+		"name": "Siegen-Wittgenstein - Bad Laasphe"
+	},
+	{
+		"id": "006269303",
+		"name": "Jena - Isserstedt"
+	},
+	{
+		"id": "006257801",
+		"name": "Köln - Lindenthal"
+	},
+	{
+		"id": "006276400",
+		"name": "Region Hannover - Isernhagen"
+	},
+	{
+		"id": "194636700",
+		"name": "Breisgau-Hochschwarzwald - Landkreis Breisgau-Hochschwarzwald"
+	},
+	{
+		"id": "006269300",
+		"name": "Jena - Ammerbach"
+	},
+	{
+		"id": "006264400",
+		"name": "Bochum - Bochum-Ost"
+	},
+	{
+		"id": "216823200",
+		"name": "Mühldorf a. Inn - Landkreis Mühldorf am Inn"
+	},
+	{
+		"id": "216823100",
+		"name": "Miesbach - Landkreis Miesbach"
+	},
+	{
+		"id": "006243704",
+		"name": "Siegen-Wittgenstein - Erndtebrück"
+	},
+	{
+		"id": "216823300",
+		"name": "Rosenheim"
+	},
+	{
+		"id": "006274201",
+		"name": "Hildesheim - Nordstemmen"
+	},
+	{
+		"id": "006269100",
+		"name": "Mannheim - Rheinau"
+	},
+	{
+		"id": "006271901",
+		"name": "Zweibrücken - Mittelbach-Hengstbach"
+	},
+	{
+		"id": "028586401",
+		"name": "Heidelberg - Bergheim"
+	},
+	{
+		"id": "006271200",
+		"name": "Berchtesgadener Land - Landkreis Berchtesgadener Land"
+	},
+	{
+		"id": "006253902",
+		"name": "Düsseldorf - Stadtbezirk 4"
+	},
+	{
+		"id": "006271600",
+		"name": "Waldshut - Landkreis Waldshut"
+	},
+	{
+		"id": "006271500",
+		"name": "Offenbach - Landkreis Offenbach"
+	},
+	{
+		"id": "006257202",
+		"name": "Mayen-Koblenz - Welling"
+	},
+	{
+		"id": "006260200",
+		"name": "Altmarkkreis Salzwedel"
+	},
+	{
+		"id": "006260100",
+		"name": "Calw - Landkreis Calw"
+	},
+	{
+		"id": "006271700",
+		"name": "Coburg"
+	},
+	{
+		"id": "006260400",
+		"name": "Kyffhäuserkreis"
+	},
+	{
+		"id": "006260300",
+		"name": "Konstanz - Landkreis Konstanz"
+	},
+	{
+		"id": "006278202",
+		"name": "Hamburg - Bergedorf"
+	},
+	{
+		"id": "006277000",
+		"name": "Recklinghausen - Datteln"
+	},
+	{
+		"id": "006260000",
+		"name": "Weilheim-Schongau - Landkreis Weilheim-Schongau"
+	},
+	{
+		"id": "006265101",
+		"name": "Regionalverband Saarbrücken - Auersmacher"
+	},
+	{
+		"id": "006260900",
+		"name": "Ansbach - Landkreis Ansbach"
+	},
+	{
+		"id": "006271301",
+		"name": "Essen - Stadtbezirk VII"
+	},
+	{
+		"id": "180029701",
+		"name": "Hagen - Hohenlimburg"
+	},
+	{
+		"id": "006245500",
+		"name": "Remscheid - Alt-Remscheid"
+	},
+	{
+		"id": "006259103",
+		"name": "Münster - Münster-Mitte"
+	},
+	{
+		"id": "006260600",
+		"name": "Borken - Kreis Borken"
+	},
+	{
+		"id": "006260800",
+		"name": "Celle - Landkreis Celle"
+	},
+	{
+		"id": "006238800",
+		"name": "Rastatt - Rheinmünster"
+	},
+	{
+		"id": "006265800",
+		"name": "Bremerhaven - Stadtbezirk Bremerhaven-Nord"
+	},
+	{
+		"id": "006272300",
+		"name": "Enzkreis"
+	},
+	{
+		"id": "280877400",
+		"name": "Ravensburg - Landkreis Ravensburg"
+	},
+	{
+		"id": "006272500",
+		"name": "Stendal"
+	},
+	{
+		"id": "279698000",
+		"name": "Reutlingen - Landkreis Reutlingen"
+	},
+	{
+		"id": "006259801",
+		"name": "Kassel - Waldau"
+	},
+	{
+		"id": "006242204",
+		"name": "Berlin - Tempelhof-Schöneberg"
+	},
+	{
+		"id": "006272100",
+		"name": "Böblingen - Landkreis Böblingen"
+	},
+	{
+		"id": "006272000",
+		"name": "Schwabach"
+	}
+]

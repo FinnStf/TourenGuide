@@ -1,0 +1,295 @@
+{% extends "layout.html" %}
+
+{% block noContainer %}
+<div class="row mt-3 mx-auto">
+	<div id="chart-border" class="border mr-5 ml-auto"
+		 style="border-radius:20px; box-shadow: 1px 1px 3px grey; display: none;">
+        {% if not is_image %}
+		    <div id="chart" class="chart mr-5"></div>
+        {% endif %}
+        {% if is_image %}
+            <div id="chart" class="chart mr-5"> <img src="{{ graph }}"></div>
+        {% endif %}
+	</div>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<div class="mr-auto ml-3">
+		<form method="post">
+			<div class="border" style="border-radius:20px; box-shadow: 1px 1px 3px grey;">
+				<div class="row ml-3">
+					<div class="mr-3 mt-4">
+						<!--  choose the type of dataset  -->
+						<h5 class="mb-3">Datensatz</h5>
+						<div class="mr-3">
+							{{ form.dataset_type (class_="select form-control") }}
+						</div>
+						<!-- type of traffic -->
+						<h5 class="mb-3 mt-3">Verkehrsart</h5>
+						<div class="mr-3">
+							{{ form.traffic_type (class_="select form-control") }}
+						</div>
+						<!-- type of chart -->
+						<h5 class="mb-3 mt-3">Chart Einstellungen</h5>
+						<div>
+							{{ form.type_of_chart (class_="select form-control") }}
+							<small class="form-text text-muted">Chart-Typ</small>
+						</div>
+					</div>
+					<div class="mt-4 ml-5 mr-3 mb-3">
+						<h5 class="mb-3">Landkreis</h5>
+                        <div class="mr-3">
+						{{ form.district_start (class_="form-control") }}
+						<small class="form-text text-muted">Start Landkreis</small>
+                        </div>
+                       <div class="mr-3 mt-4">
+						{{ form.district_end (class_="form-control") }}
+						<small class="form-text text-muted">End Landkreis</small>
+                        </div>
+					</div>
+					<!-- date pickers -->
+					<div class="mt-4 ml-5 mr-3 mb-3">
+						<h5 class="mb-3">Zeitraum</h5>
+						<!--  select a startdate as filter  -->
+						<div>
+							{% if form.start_date.errors %}
+							{{ form.start_date (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.startDate.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.start_date (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Startdatum</small>
+						</div>
+
+						<!--  select a enddate as filter  -->
+						<div class="mt-4">
+							{% if form.end_date.errors %}
+							{{ form.end_date (class_="datepicker form-control is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.end_date.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.end_date (class_="datepicker form-control") }}
+							{% endif %}
+							<small class="form-text text-muted">Enddatum</small>
+						</div>
+                        <div class="row mt-4" style="justify-content: space-between; margin-left: 0; margin-right: 0">
+                            <!--  select a start_time as filter  -->
+                            <div>
+                                {% if form.start_time.errors %}
+                                {{ form.start_time (class_="timepicker form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.start_time.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.start_time (class_="timepicker form-control") }}
+                                {% endif %}
+                                <small class="form-text text-muted">Start(UhrZ.)</small>
+                            </div>
+
+                            <!--  select a end_time as filter  -->
+                            <div>
+                                {% if form.end_time.errors %}
+                                {{ form.end_time (class_="timepicker form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.end_time.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.end_time (class_="timepicker form-control") }}
+                                {% endif %}
+                                <small class="form-text text-muted">End(UhrZ.)</small>
+                            </div>
+                    </div>
+					</div>
+					<!-- chart settings -->
+					<div class="mt-4 mb-3 mr-5 ml-5">
+<!--						<h5 class="mb-3">Chart Einstellungen</h5>-->
+<!--						<div>-->
+<!--							<div>-->
+<!--								{{ form.type_of_chart (class_="select form-control") }}-->
+<!--							</div>-->
+<!--							<small class="form-text text-muted">Chart-Typ</small>-->
+<!--						</div>-->
+<!--						<div class="mt-4">-->
+<!--							<div>-->
+<!--								{{ form.x_axis (class_="select form-control") }}-->
+<!--							</div>-->
+<!--							<small class="form-text text-muted">X-Achse</small>-->
+<!--						</div>-->
+<!--						<div class="mt-4">-->
+<!--							<div>-->
+<!--								{{ form.y_axis (class_="select form-control") }}-->
+<!--							</div>-->
+<!--							<small class="form-text text-muted">Y-Achse</small>-->
+<!--						</div>-->
+<!--						<div class="mt-4">-->
+<!--							<div>-->
+<!--								{{ form.group_by (class_="select form-control") }}-->
+<!--							</div>-->
+<!--							<small class="form-text text-muted">Gruppierung</small>-->
+<!--						</div>-->
+					</div>
+				</div>
+				<!-- compare graph -->
+				<div class="ml-3">
+<!--					<hr class="mt-3 mr-3">-->
+
+<!--					<h5 class="mt-3 mb-3" id="textCompare">Vergleichsgraph (Optional)</h5>-->
+<!--					<div class="row mt-4 ml-0 mb-3" id="compareDates">-->
+<!--						<div class="mr-4">-->
+<!--							{% if form.start_date_compare.errors %}-->
+<!--							{{ form.start_date_compare (class_="datepicker form-control is-invalid") }}-->
+<!--							<div class="invalid-feedback">-->
+<!--								{% for error in form.start_date_compare.errors %}-->
+<!--								<span>{{ error }}</span>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
+<!--							{% else %}-->
+<!--							{{ form.start_date_compare (class_="datepicker form-control") }}-->
+<!--							{% endif %}-->
+<!--							<small class="form-text text-muted">Startdatum</small>-->
+<!--						</div>-->
+<!--						<div class="ml-5 mr-4">-->
+<!--							{% if form.end_date_compare.errors %}-->
+<!--							{{ form.end_date_compare (class_="datepicker form-control is-invalid") }}-->
+<!--							<div class="invalid-feedback">-->
+<!--								{% for error in form.end_date_compare.errors %}-->
+<!--								<span>{{ error }}</span>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
+<!--							{% else %}-->
+<!--							{{ form.end_date_compare (class_="datepicker form-control") }}-->
+<!--							{% endif %}-->
+<!--							<small class="form-text text-muted">Enddatum</small>-->
+<!--						</div>-->
+<!--						<div class="ml-5">-->
+<!--							<div>-->
+<!--								{{ form.district_compare (class_="form-control") }}-->
+<!--							</div>-->
+<!--							<small class="form-text text-muted">Landkreis</small>-->
+<!--						</div>-->
+<!--					</div>-->
+
+					<!-- actions -->
+					<hr class="mt-3 mr-3">
+					<div class="row mt-2 mb-3 ml-0">
+						<!-- submit button -->
+						<button class="btn btn-success btn-md mt-2" type="submit"
+								style="font-size:16px">
+							<i class="fas fa-sync mr-1"></i>
+							Anwenden
+						</button>
+						<!-- save button -->
+						<button id="saveButton" type="button" class="btn btn-primary btn-md ml-5 mt-2"
+								style="font-size:16px; display:none"
+								onclick="saveGraph()">
+							<i class="far fa-save mr-1" id="saveButtonIcon"></i>
+							<span id="saveButtonText">Speichern</span>
+						</button>
+						<!-- clear input -->
+						<button id="clearInputButton" type="button" class="btn btn-warning btn-md ml-5 mt-2"
+								style="font-size:16px"
+								onclick="clearInputs()">
+							<i class="fas fa-eraser mr-1"></i>
+							<span id="clearInputsText">Eingaben löschen</span>
+						</button>
+						<!-- save csv file -->
+						<button id="saveCSVButton" type="button" class="btn btn-warning btn-md ml-5 mt-2"
+								style="font-size:16px; display:none"
+								onclick="saveCSV()">
+							<i class="fas fa-file-download mr-1"></i>
+							<span id="saveCSVText">CSV Download</span>
+						</button>
+					</div>
+					<div class="mr-3 mt-4 mb-3">
+						<input name="graphTitle" type="text" placeholder="Graph Beschriftung" maxlength="200"
+							   id="graphTitle"
+							   class="searchField"
+							   style="border:1px solid; border-color:#ced4da; border-radius:4px; display:none"
+							   size="57"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	if(!jQuery.isEmptyObject({{ graph|tojson }})) {
+	    if (!{{ is_image|int }}){
+	        var graph = JSON.parse({{ graph|tojson }});
+		    var graphs = {{graph | safe }};
+		    Plotly.plot('chart', graphs, {});
+	    }
+
+		$("#chart-border").show();
+		if({{ is_new_graph|int }}){
+			$("#saveButton").show();
+			$("#saveCSVText").show();
+			document.getElementById("saveCSVButton").style.display = 'block';
+			$("#graphTitle").show();
+		}
+	}
+    function saveGraph(){
+        graphTitle = $("#graphTitle").val();
+
+        var input = { "traffic": $("#traffic_type").val(),
+                 "dataset_type": $("#dataset_type").val(),
+                 "grp_by": $("#group_by").val(),
+                 "x": $("#x_axis").val(),
+                 "y": $("#y_axis").val(),
+                 "lk_start": $("#district_start").val(),
+                 "lk_end": $("#district_end").val(),
+                 "start_date": $("#start_date").val(),
+                 "end_date": $("#end_date").val(),
+                 "start_time": $("#start_time").val(),
+                 "end_time": $("#end_time").val(),
+                 "start_date_compare": $("#start_date_compare").val(),
+                 "end_date_compare": $("#end_date_compare").val(),
+                 "district_compare": $("#district_compare").val(),
+                 "type_of_chart": $("#type_of_chart").val()
+                      }
+
+        var graph_id;
+        var current_url = window.location.href;
+        if(current_url.includes("charts/")){
+		    graph_id = current_url.substring(current_url.lastIndexOf('/') + 1);
+	    }
+        var send = { "graph": JSON.stringify(graph),
+                     "title": graphTitle,
+                     "input": JSON.stringify(input),
+                     "graph_id": graph_id
+                    };
+        $.ajax({
+            url: "/chart_to_db",
+            type: "POST",
+            data: JSON.stringify(send),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+            });
+    saveFeedback();
+    }
+
+    function saveFeedback(){
+        $("#saveButton").removeClass('btn-primary').addClass('btn-success');
+        $("#saveButtonIcon").removeClass('far fa-save').addClass('fas fa-check');
+        $("#saveButtonText").text("Gespeichert");
+    }
+
+	function saveCSV(){
+	window.location.href = window.location.href.replace("charts", "csv_download");
+	}
+
+    function clearInputs(){
+        window.location.href = window.location.href;
+    }
+</script>
+
+{% endblock noContainer %}

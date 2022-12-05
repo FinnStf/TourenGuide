@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>Bayerisches Zentrum für Tourismus</title>
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+
+		<!--    Bootstrap  -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<!--    Font Awesome  -->
+	<link href="{{ url_for('static', filename='fontawesome/all.css') }}" rel="stylesheet">
+	<!--    JQuery  -->
+	<script type=text/javascript src="{{ url_for('static', filename='jquery/jquery-3.6.0.min.js') }}"></script>
+
+
+	<!--    block to set individual stylesheets for individual html files-->
+	{% block head %}
+	{% endblock head %}
+
+	<style>
+	   body {
+	   	padding-top:5rem;
+	   }
+	   ul {
+	   	list-style-type: none;
+	   }
+	   div {
+	   	list-style-type: none;
+	   }
+	</style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" style="border-bottom: 2px solid #0074B6;">
+
+	<div class="row mt-3 mb-1 mr-auto">
+		<!-- icon -->
+		<img class="mr-5" src="{{ url_for('static', filename='image/bzt_icon.png') }}" height="60"
+			 alt="bzt_icon">
+
+		<!-- home -->
+		<!-- if user is authenticated: dropdown with more options -->
+		{% if current_user.is_authenticated %}
+		<div class="dropdown mx-5">
+			{% if request.path == '/' or request.path == '/dashboard/create' %}
+			<button class="btn" type="button" id="dropdownDashboards"
+					style="font-size:17px; color:#0074B6"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="fas fa-home" style="font-size:30px; color:#0074B6"></i></div>
+				<b>Home</b>
+			</button>
+			{% else %}
+			<button class="btn" type="button" id="dropdownDashboards" style="font-size:17px; color:black"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="fas fa-home" style="font-size:30px; color:black"></i></div>
+				<b>Home</b>
+			</button>
+			{% endif %}
+			<div class="dropdown-menu">
+				<div>
+					<a class="dropdown-item" href="{{ url_for('main.create_dashboards') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="fas fa-puzzle-piece" style="font-size:20px"></i></div>
+						Dashboards erstellen
+					</a>
+					<a class="dropdown-item" href="{{ url_for('main.display_dashboards') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="fas fa-border-all" style="font-size:17px"></i></div>
+						Dashboards anzeigen
+					</a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		{% if request.path == '/' %}
+		<a href="{{ url_for('main.display_dashboards') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:#0074B6">
+			<div class="btn"><i class="fas fa-home" style="font-size:30px; color:#0074B6"></i></div>
+			<b>Home</b>
+		</a>
+		{% else %}
+		<a href="{{ url_for('main.display_dashboards') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:black">
+			<div class="btn"><i class="fas fa-home" style="font-size:30px"></i></div>
+			<b>Home</b>
+		</a>
+		{% endif %}
+		{% endif %}
+
+		<!-- discover -->
+		<!-- ONLY allowed if current user is also an admin-->
+		{% if current_user.is_authenticated %}
+
+		{% if request.path == '/discover' %}
+		<a href="{{ url_for('discover.discover_data') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:#0074B6">
+			<div class="btn"><i class="fas fa-search" style="font-size:30px; color:#0074B6"></i></div>
+			<b>Discover</b>
+		</a>
+		{% else %}
+		<a href="{{ url_for('discover.discover_data') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:black">
+			<div class="btn"><i class="fas fa-search" style="font-size:30px"></i></div>
+			<b>Discover</b>
+		</a>
+		{% endif %}
+		{% endif %}
+
+		<!-- charts -->
+		<!-- if user is authenticated: dropdown with more options -->
+		{% if current_user.is_authenticated %}
+		<div class="dropdown mx-5">
+			{% if request.path == '/charts' or request.path == '/display_charts' %}
+			<button class="btn" type="button" id="dropdownCharts"
+					style="font-size:17px; color:#0074B6"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="far fa-chart-bar" style="font-size:30px; color:#0074B6"></i></div>
+				<b>Charts</b>
+			</button>
+			{% else %}
+			<button class="btn" type="button" id="dropdownCharts" style="font-size:17px; color:black"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="far fa-chart-bar" style="font-size:30px; color:black"></i></div>
+				<b>Charts</b>
+			</button>
+			{% endif %}
+			<div class="dropdown-menu">
+				<div>
+					<a class="dropdown-item" href="{{ url_for('charts.create_charts') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="far fa-plus-square" style="font-size:20px"></i></div>
+						Charts erstellen
+					</a>
+					<a class="dropdown-item" href="{{ url_for('display_graphs.show_charts') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="fas fa-chart-pie" style="font-size:17px"></i></div>
+						Charts anzeigen
+					</a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		{% if request.path == '/display_charts' %}
+		<a href="{{ url_for('display_graphs.show_charts') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:#0074B6">
+			<div class="btn"><i class="far fa-chart-bar" style="font-size:30px; color:#0074B6"></i></div>
+			<b>Charts</b>
+		</a>
+		{% else %}
+		<a href="{{ url_for('display_graphs.show_charts') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:black">
+			<div class="btn"><i class="far fa-chart-bar" style="font-size:30px"></i></div>
+			<b>Charts</b>
+		</a>
+		{% endif %}
+		{% endif %}
+
+		<!-- maps -->
+		<!-- if user is authenticated: dropdown with more options -->
+		{% if current_user.is_authenticated %}
+		<div class="dropdown mx-5">
+			{% if request.path == '/maps' or request.path == '/display_maps' %}
+			<button class="btn" type="button" id="dropdownMaps" style="font-size:17px; color:#0074B6"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="far fa-map" style="font-size:30px; color:#0074B6"></i></div>
+				<b>Maps</b>
+			</button>
+			{% else %}
+			<button class="btn" type="button" id="dropdownMaps" style="font-size:17px; color:black"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="btn"><i class="far fa-map" style="font-size:30px; color:black"></i></div>
+				<b>Maps</b>
+			</button>
+			{% endif %}
+			<div class="dropdown-menu">
+				<div>
+					<a class="dropdown-item" href="{{ url_for('maps.create_maps') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="far fa-plus-square" style="font-size:20px"></i></div>
+						Maps erstellen
+					</a>
+					<a class="dropdown-item" href="{{ url_for('display_graphs.show_maps') }}"
+					   style="font-size:17px; color:black">
+						<div class="btn"><i class="fas fa-map-marked-alt" style="font-size:17px"></i></div>
+						Maps anzeigen
+					</a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		{% if request.path == '/display_maps' %}
+		<a href="{{ url_for('display_graphs.show_maps') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:#0074B6">
+			<div class="btn"><i class="far fa-map" style="font-size:30px; color:#0074B6"></i></div>
+			<b>Maps</b>
+		</a>
+		{% else %}
+		<a href="{{ url_for('display_graphs.show_maps') }}" class="mx-5 pt-2"
+		   style="font-size:17px; color:black">
+			<div class="btn"><i class="far fa-map" style="font-size:30px"></i></div>
+			<b>Maps</b>
+		</a>
+		{% endif %}
+		{% endif %}
+
+		<!-- data view -->
+		{% if current_user.is_authenticated %}
+
+		{% if request.path == '/data' %}
+		<a href="{{ url_for('data_view.data_shown') }}" class="ml-5 pt-2"
+		   style="font-size:17px; color:#0074B6">
+			<div class="btn"><i class="fas fa-database" style="font-size:30px; color:#0074B6"></i></div>
+			<b>Data</b>
+		</a>
+		{% else %}
+		<a href="{{ url_for('data_view.data_shown') }}" class="ml-5 pt-2"
+		   style="font-size:17px; color:black">
+			<div class="btn"><i class="fas fa-database" style="font-size:30px"></i></div>
+			<b>Data</b>
+		</a>
+		{% endif %}
+		{% endif %}
+
+
+	</div>
+
+
+	<!-- login / logout -->
+	<!-- authenticated -->
+	{% if current_user.is_authenticated %}
+        <div class="row mt-3 mb-1">
+	<div class="dropdown mx-5">
+		<button class="btn" type="button" id="dropdownAuthentication"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div class="row">
+				<div class="btn"><i class="far fa-user" style="font-size:30px"></i></div>
+				<div class="mt-2">
+					<b>{{current_user.first_name}}</b>
+					<b>{{current_user.last_name}}</b>
+				</div>
+			</div>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" href="{{ url_for('user_management.user_table') }}">
+				<div class="btn"><i class="fas fa-user-cog"></i></div>
+				Benutzerverwaltung
+			</a>
+
+			<a class="dropdown-item" href="{{ url_for('authentication.logout') }}">
+				<div class="btn"><i class="fas fa-sign-out-alt" style="font-size:20px"></i></div>
+				Abmelden
+			</a>
+		</div>
+        </div>
+	<!-- not authenticated -->
+	</div>
+	{% else %}
+	{% if request.path == '/login' %}
+	<a href="{{ url_for('authentication.login') }}" class="ml-3 mt-1 mr-5"
+	   style="font-size:17px; color:#0074B6">
+		<div class="btn"><i class="far fa-user" style="font-size:30px; color:#0074B6"></i></div>
+		<b>Gast</b>
+	</a>
+	{% else %}
+	<a href="{{ url_for('authentication.login') }}" class="ml-3 mt-1 mr-5"
+	   style="font-size:17px; color:black">
+		<div class="btn"><i class="far fa-user" style="font-size:30px"></i></div>
+		<b>Gast</b>
+	</a>
+	{% endif %}
+	{% endif %}
+
+</nav>
+
+
+
+<!-- section for the flash messages -->
+<div class="col-12 mt-3 position-absolute right-0">
+	<div>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<div class="alert alert-{{ category }} mt-3">
+			{{ message }}
+			<i class="fa fa-times fa-lg cursor-pointer float-right" onclick=delete_flash(this)></i>
+		</div>
+
+		<script>
+           // close the flash message on the X-Item
+           function delete_flash(flash) {
+               $(flash).parent().remove()
+           }
+
+		</script>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+
+		<!-- contents that are filled within the layout -->
+		{% block noContainer %}
+		{% endblock noContainer %}
+
+		<div class="container">
+			{% block content %}
+			{% endblock content %}
+		</div>
+		<script>
+			<!-- takes all elements that do not contain the attribute "draggable" and gives them the attribute draggable=false -->
+			$("*:not([draggable])").attr('draggable', false);
+
+			<!-- takes all elements that contain a modebar and hides them (especially the plotly modebar) -->
+			$("*[id*=modebar]").css("display", "none");
+		</script>
+	</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+		integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

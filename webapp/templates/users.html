@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block content %}
+    <!-- Title Usermanagement -->
+    <div class="d-flex flex-row">
+       <div class="p-2">
+           <h2>Benutzer</h2>
+       </div>
+        <div class="p-2">
+            <!-- Button for calling Modal -->
+            <button class="btn" title="Benutzer hinzufügen" data-toggle="modal" data-target="#UserModal"><i class="fas fa-user-plus" style="font-size:30px"></i></button>
+        </div>
+    </div>
+
+<!-- table to display users -->
+
+    <table id="usersTable" class="table table-sm table-striped table-bordered table-hover">
+        <!-- columns -->
+        <thead>
+        <tr class="table-primary">
+            <td>Name</td>
+            <td>Email</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+
+            <!-- rows -->
+            {% for user in users %}
+            <tr>
+                <td> {{ user.first_name}} {{ user.last_name  }}</td>
+                <td> {{ user.email}}</td>
+                <td>
+                    <a href="{{ url_for('user_management.update_user', user_id=user._id) }}" data-toggle="tooltip" title="Benutzer bearbeiten" style="text-decoration: none">
+                        <div class="btn">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                    </a>
+                    <a href="{{ url_for('user_management.delete_user', user_id=user._id) }}" data-toggle="tooltip" title="Benutzer löschen" style="text-decoration: none">
+                       <div class="btn">
+                            <i class="far fa-trash-alt"></i>
+                       </div>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="UserModal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createUserTitle">{{ title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="insert_form">
+                    <div class="modal-body">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <!-- first_name form -->
+                                <div class="form-group mr-auto ml-3">
+                                    {{ form.first_name.label(class="form-control-label") }}
+                                    {{ form.first_name(class="form-control form-control-md") }}
+                                </div>
+
+                                <!-- last_name form -->
+                                <div class="form-group ml-auto mr-3">
+                                    {{ form.last_name.label(class="form-control-label") }}
+                                    {{ form.last_name(class="form-control form-control-md") }}
+                                </div>
+                            </div>
+
+                            <!-- email form -->
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <!-- password form -->
+                            <div class="form-group">
+                                {{ form.password.label(class="form-control-label") }}
+                                {% if form.password.errors %}
+                                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.password(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <!-- password repeat form -->
+                            <div class="form-group">
+                                {{ form.password_repeat.label(class="form-control-label") }}
+                                {% if form.password_repeat.errors %}
+                                {{ form.password_repeat(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password_repeat.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.password_repeat(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group d-grid gap-2 col-6 mx-auto">
+                            <!-- submit button -->
+                            {{ form.submit(class="btn btn-outline-info btn-block") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

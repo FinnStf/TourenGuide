@@ -1,0 +1,298 @@
+{% extends "layout.html" %}
+
+{% block noContainer %}
+
+<script>
+
+let map_prelist = {{map_ids}};
+let chart_prelist = {{chart_ids}};
+let objectType;
+let dragged;
+let id;
+let index;
+let loop;
+let indexDrop;
+let list;
+let newOrder;
+
+let grabbedElement;
+let dashboardEntries = {};
+
+
+document.addEventListener("dragstart", ({target}) => {
+    dragged = target;
+    loop = target.dataset.loop
+    objectType = dragged.dataset.object
+    id = target.id;
+    grabbedElement = id;
+    list = target.parentNode.children;
+    for(let i = 0; i < list.length; i += 1) {
+      if(list[i] === dragged){
+        index = i;
+      }
+    }
+});
+
+
+document.addEventListener("dragover", (event) => {
+	event.preventDefault();
+});
+
+
+document.addEventListener("drop", ({target}) => {
+	while(!target.classList.contains("dropzone") && target.tagName != "HTML" ){
+		target = target.parentElement;
+	}
+	if(target.classList.contains("dropzone") && target.id !== id) {
+		dragged.remove( dragged );
+		for(let i = 0; i < list.length; i += 1) {
+			if(list[i] === target){
+				indexDrop = i;
+			}
+		}
+		if(index > indexDrop) {
+			target.before( dragged );
+		} else {
+			target.after( dragged );
+		}
+		// if maps dragged into dashboard
+		// decide which dropcard is the target
+		if(target.id == "dropcard-1" || target.id == "dropcard-2" || target.id == "dropcard-3" ){
+			document.getElementById(dragged.id).setAttribute("draggable", false);
+			document.getElementById(target.id).classList.remove("dropzone");
+			document.getElementById(target.id).style.display = "none";
+			if(objectType=="map"){
+                document.getElementById("mapItem-" + loop).className += " col";
+                updateGraph("graph-" + loop);
+                dashboardEntries = saveDashboardEntry(target.id, map_prelist[loop], "map");
+            }else{
+                document.getElementById("chartItem-" + loop).className += " col";
+                updateGraph("chart-" + loop);
+                dashboardEntries = saveDashboardEntry(target.id, chart_prelist[loop], "chart");
+            }
+            document.getElementById("saveButton").style.display = 'block';
+		}
+		// if maps are reordered within the map-list
+			else{
+			newOrder = [];
+			console.log(list);
+			for(let i = 0; i < list.length; i += 1) {
+				newOrder.push(list[i].id);
+			}
+			if (objectType=="map"){
+                sendRequest(reorder(map_prelist, newOrder, objectType));
+            }
+			else{
+			    sendRequest(reorder(chart_prelist, newOrder, objectType));
+            }
+		}
+    }
+});
+
+
+function reorder(prelist, newOrder, objectType){
+	let postlist = [];
+	for(let i = 0; i < prelist.length; i += 1) {
+		if(prelist[newOrder[i]] == null){
+			postlist[i] = prelist[i]
+		}
+		else{
+			postlist[i] = prelist[newOrder[i]];
+		}
+	}
+	return {"list":postlist, "type":objectType};
+}
+
+
+function sendRequest(reorderedListObject){
+	var url = window.location.href + "/reorder";
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(JSON.stringify(reorderedListObject));
+}
+
+
+function updateGraph(div){
+	layout = {width: 300, height: 280};
+	Plotly.relayout(div, layout);
+
+	document.getElementById(div).childNodes[0].childNodes[0].classList.add("mx-auto");
+}
+
+
+function saveDashboardEntry(dropcardIdx, graphId, objectType){
+    var dropcardIndex;
+    switch (dropcardIdx) {
+  case "dropcard-1":
+      dropcardIndex = 1
+    break;
+  case "dropcard-2":
+      dropcardIndex = 2
+    break;
+  case "dropcard-3":
+      dropcardIndex = 3
+    break;
+  default:
+    break;
+}
+	dashboardEntries[dropcardIndex.toString()] = {"id":graphId, "type":objectType};
+	return dashboardEntries;
+}
+
+
+function saveDashboard(){
+	var text = document.getElementById("textFieldInput").value;
+	dashboardEntries["text"] = text;
+	console.log(JSON.stringify(dashboardEntries));
+
+	var current_url = window.location.href;
+    var url = current_url.replace('dashboard/create', 'dashboard_to_db');
+	var req = new XMLHttpRequest();
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	req.send(JSON.stringify(dashboardEntries));
+}
+
+
+function saveFeedback(){
+	var button = document.getElementById("saveButton");
+	var buttonIcon = document.getElementById("saveButtonIcon");
+	var buttonText = document.getElementById("saveButtonText");
+	buttonIcon.classList.remove('far');
+	buttonIcon.classList.remove('fa-save');
+	button.classList.remove('btn-primary');
+
+	buttonIcon.classList.add('fas');
+	buttonIcon.classList.add('fa-check');
+	button.classList.add('btn-success');
+
+	buttonText.textContent = "Gepeichert";
+}
+
+
+function clearInputs(){
+	window.location.href = window.location.href;
+}
+</script>
+
+<div class="row">
+	<ul class="col-2">
+		<div class="mt-4" style="font-size:18px; font-weight:bolder;">Favorisierte Charts</div>
+		{% for chart in charts %}
+		<li class="mt-4 mb-5" id='chartItem-{{loop.index0}}' data-loop="{{loop.index0}}" data-object="chart" draggable="true" style="cursor:move;">
+			<!-- set border maps -->
+			<div id="borderCharts-{{loop.index0}}" style="border-radius:20px; box-shadow: 1px 1px 3px grey;"
+				 class="border">
+				<!-- set map in border -->
+				<div id="chart-{{loop.index0}}" class="chart mt-3" style="min-height:15rem; min-width:15rem"></div>
+				<div id="chartTitle-{{loop.index0}}" class="ml-3 mr-3 mb-2" style="font-size:17px; font-weight:500"></div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	<div class="col-8">
+		<div id="borderDashboard" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+				 class="ml-3 mr-3 mt-4">
+			<div class="row">
+				<div id="dropcard-1" class="dropzone col m-3 border" style="min-width:30rem">
+					<div class="mx-auto mb-5" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center">
+						+
+					</div>
+				</div>
+				<div id="dropcard-2" class="dropzone col m-3 border" style="min-width:30rem">
+					<div class="mx-auto mb-5" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center;">
+						+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="dropcard-3" class="dropzone col m-3 border" style="min-width:30rem">
+					<div class="mx-auto mb-5" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center">
+						+
+					</div>
+				</div>
+				<div class="col m-3">
+					<div id="textFieldBorder" class="border" style="border-radius:5px; box-shadow: 1px 1px 3px grey; min-width:30rem; height:17rem">
+						<div id="textField" style="word-wrap: break-word;"></div>
+						<textarea id="textFieldInput" placeholder="Dashboard Beschreibung" style="border-style:none; width:100%; height:100%;"></textarea>
+					</div>
+					<div class="row ml-0">
+						<!-- save button -->
+						<button id="saveButton" type="button" class="btn btn-primary btn-md mr-5 mt-3"
+								style="font-size:16px; display:none"
+								onclick="saveDashboard(); saveFeedback();">
+							<i class="far fa-save mr-1" id="saveButtonIcon"></i>
+							<span id="saveButtonText">Speichern</span>
+						</button>
+						<!-- clear input -->
+						<button id="clearInputButton" type="button" class="btn btn-warning btn-md mt-3"
+								style="font-size:16px"
+								onclick="clearInputs()">
+							<i class="fas fa-eraser mr-1"></i>
+							<span id="clearInputsText">Eingaben löschen</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<ul class="col-2">
+		<div class="mt-4" style="font-size:18px; font-weight:bolder;">Favorisierte Karten</div>
+		{% for graph in graphs %}
+		<li class="mt-4 mb-5" id='mapItem-{{loop.index0}}' data-loop="{{loop.index0}}" data-object="map" draggable="true" style="cursor:move;">
+			<!-- set border maps -->
+			<div id="borderMaps-{{loop.index0}}" style="border-radius:20px; box-shadow: 1px 1px 3px grey;"
+				 class="border">
+				<!-- set map in border -->
+				<div id="graph-{{loop.index0}}" class="chart mt-3" style="min-height:15rem; min-width:15rem"></div>
+				<div id="title-{{loop.index0}}" class="ml-3 mr-3 mb-2" style="font-size:17px; font-weight:500"></div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% for graph in graphs %}
+<script>
+	document.getElementById("title-" + {{loop.index0}}).textContent = {{graphs|safe}}[{{loop.index0}}].title;
+	var favorite = JSON.parse({{graphs|safe}}[{{loop.index0}}].favorite);
+</script>
+{% endfor %}
+
+{% for chart in charts %}
+<script>
+	document.getElementById("chartTitle-" + {{loop.index0}}).textContent = {{charts|safe}}[{{loop.index0}}].title;
+	var favorite = JSON.parse({{charts|safe}}[{{loop.index0}}].favorite);
+</script>
+{% endfor %}
+
+{% for chart in charts %}
+<script>
+	document.getElementById("chartTitle-" + {{loop.index0}}).textContent = {{charts|safe}}[{{loop.index0}}].title;
+	var favorite = JSON.parse({{charts|safe}}[{{loop.index0}}].favorite);
+</script>
+{% endfor %}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+	let map_data = {{graphs|safe}};
+
+	for (i = 0; i < map_data.length; i++){
+		if(document.getElementById("graph-" + i) != null){
+			layout = JSON.parse(map_data[i].data)["layout"];
+			Plotly.plot('graph-' + i, JSON.parse(map_data[i].data)["data"], layout);
+		}
+	}
+
+	let chart_data = {{charts|safe}};
+
+	for (i = 0; i < chart_data.length; i++){
+		if(document.getElementById("chart-" + i) != null){
+			layout = JSON.parse(chart_data[i].data)["layout"];
+			Plotly.plot('chart-' + i, JSON.parse(chart_data[i].data)["data"], layout);
+		}
+	}
+</script>
+
+{% endblock noContainer %}

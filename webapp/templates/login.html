@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+<!-- this part will be placed into the block content defined in the layout.html -->
+{% block content %}
+<!-- modal won't disappear -->
+<script>
+    $(window).on('load', function() {
+        $('#loginModal').modal({ backdrop: 'static', keyboard: false });
+        $('#loginModal').modal('show');
+    });
+
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form method="post">
+				<div class="modal-body">
+					<!--  important for the secret key  -->
+					{{ form.hidden_tag() }}
+					<fieldset class="form-group">
+						<!-- email form -->
+						<div class="form-group">
+							{{ form.email.label(class="form-control-label") }}
+							{% if form.email.errors %}
+							{{ form.email(class="form-control form-control-lg is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.email(class="form-control form-control-lg") }}
+							{% endif %}
+						</div>
+						<!-- password form -->
+						<div class="form-group">
+							{{ form.password.label(class="form-control-label") }}
+							{% if form.password.errors %}
+							{{ form.password(class="form-control form-control-lg is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+							{% else %}
+							{{ form.password(class="form-control form-control-lg") }}
+							{% endif %}
+						</div>
+
+						<!--                    show error if existing-->
+						<p style="color:red">
+							{% if error == True %}
+							Email-Adresse oder Passwort falsch!
+							{% endif %}
+						</p>
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<div class="form-group d-grid gap-2 col-6 mx-auto">
+						<!-- submit button -->
+						{{ form.submit(class="btn btn-outline-info btn-block") }}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

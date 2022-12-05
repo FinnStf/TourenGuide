@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script>
+    $(window).on('load', function() {
+        $('#updateDataModal').modal({ backdrop: 'static', keyboard: false });
+        $('#updateDataModal').modal('show');
+        getIncludedTime()
+    });
+
+</script>
+
+<!-- Modal for updating Dataset -->
+<div class="modal fade" id="updateDataModal" tabindex="-1" role="dialog"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ title }}</h4>
+                   <a href="{{ url_for('data_view.data_shown')}}" class="close">
+					<span aria-hidden="true">&times;</span>
+                   </a>
+			</div>
+			<form method="post" enctype="multipart/form-data">
+				<div class="modal-body">
+					<fieldset class="form-group">
+                          <div class="form-group">
+                            <label for="DatasetSelect">Wähle Datensatz</label>
+                            <select class="form-control form-control-lg" name="Dataset" id="DatasetSelect" onchange="getIncludedTime()">
+                                {% for option in options %}
+                              <option value="{{ option[0] }},{{ option[1] }}">{{ option[1] }}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                            <div class="form-group">
+                                <label for="includedTimeLine">Enthaltener Zeitraum:</label>
+                                <input type="text" class="form-control form-control-lg" id="includedTimeLine" disabled>
+                            </div>
+                        	<div class="custom-file form-control-lg mt-3 mb-3">
+                                <input id="FileUploadInput" type="file" name="file" class="custom-file-input" aria-describedby="invalidFileFeedback" required>
+                                <label class="custom-file-label" for="FileUploadInput">Choose file...</label>
+                                <div id="invalidFileFeedback" class="invalid-feedback">Die Datei überschneidet sich mit bereits vorhandenen Datensätzen</div>
+	                        </div>
+                            <div class="form-group">
+                                <label for="UploadFileTime">Enthaltener Zeitraum:</label>
+                                <input type="text" class="form-control form-control-lg" id="UploadFileTime" disabled>
+                            </div>
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<div class="form-group">
+                      <input type="submit" class="btn btn-primary btn-lg" value="Upload">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+
+    var datasetDateEnd, datasetDateBegin;
+
+  function getIncludedTime() {
+      var datasetID = $('#DatasetSelect').val().split(',')[0];
+          $.get('/_get_datasetTime/'+datasetID, function (data) {
+              if (data.begin&&data.end) {
+                  datasetDateBegin = new Date(data.begin)
+                  var dateBegin = (datasetDateBegin.toLocaleDateString("de-DE", {day: "2-digit",month: "2-digit",year: "numeric"}));
+                  datasetDateEnd = new Date(data.end)
+                  var dateEnd = (datasetDateEnd.toLocaleDateString("de-DE", {day: "2-digit",month: "2-digit",year: "numeric"}));
+                  $('#includedTimeLine').val(dateBegin + ' - ' + dateEnd)
+              }else {
+                    $('#includedTimeLine').val(' - ')
+              }
+          })
+        }
+
+        $('#FileUploadInput').change(function(evt){
+        //get the file name
+            var file = evt.target.files[0]
+            var fileName = file.name
+            var timeline, firstEntry, lastEntry
+            //replace the "Choose a file" label
+            $('#FileUploadInput').next('.custom-file-label').html(fileName);
+            if (file) {
+            var reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function (evt) {
+                var csv = evt.target.result
+                var allTextLines = csv.split(/\r\n|\n/);
+
+                firstEntry = (allTextLines[1].split(','))[0];
+                lastEntry = (allTextLines[allTextLines.length-1].split(','))[0];
+                var i = 2;
+                while (lastEntry==""){
+                    lastEntry = (allTextLines[allTextLines.length-(i++)].split(','))[0];
+                }
+                var uploadDateBegin = new Date(firstEntry)
+                var uploadDateEnd = new Date(lastEntry)
+                firstEntry = parseDateString(firstEntry)
+                lastEntry = parseDateString(lastEntry)
+                $('#UploadFileTime').val(lastEntry + ' - ' + firstEntry)
+
+                //check if timespan overlaps
+                if (!datasetDateEnd || uploadDateBegin > datasetDateEnd || uploadDateEnd < datasetDateBegin){
+                    $('#FileUploadInput').remove("is-invalid")
+                    $('#FileUploadInput').addClass("is-valid")
+                }else{
+                    $('#FileUploadInput').remove("is-valid")
+                    $('#FileUploadInput').addClass("is-invalid")
+                }
+                }
+            reader.onerror = function (evt) {
+                console.log(evt)
+            }
+        }
+    })
+
+  function parseDateString(str){
+      var res = str.match(/\d+/g);
+      var erg = res[res.length-1]
+      for (let i = res.length-2; i >= 0; i--) {
+           erg += '.'+res[i]
+      }
+      return erg
+  }
+
+</script>
+{% endblock content %}

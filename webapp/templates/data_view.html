@@ -1,0 +1,292 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{% endblock head %}
+
+<!-- this part will be placed into the block content defined in the layout.html -->
+{% block content %}
+<script>
+    $(window).on('load', function() {
+         $.get('_check_for_upload', function(data) {
+                    if (data.response) {
+                        $("#uploadBarContainer").show();
+                        check_progress()
+                    }
+                 else $("#uploadBarContainer").hide();
+                })
+    });
+
+
+</script>
+<!-- Title Datensatz Verwaltung -->
+<div class="mt-3" style="display: flex; justify-content: space-between">
+        <div>
+           <h2 style="display: inline-block">Datensätze</h2>
+                <!-- Button for refreshing table -->
+            <button class="btn" onclick="reloadTable()" data-toggle="tooltip" title="Reload Table"><i class="fas fa-sync-alt" style="font-size: 30px;  margin-bottom: .5rem;"></i></button>
+        </div>
+        <div id="uploadBarContainer" class="alert alert-light" role="alert" style="width: 50%; display: flex; margin-bottom: 0; padding: 0">
+            <span id="myProgressBarTitle" style="display: inline-block; width: 50%;"></span>
+            <div id="myProgressSpinner" style="display: none" class="spinner-border text-secondary" role="status">
+            </div>
+            <div id="progressBox" class="progress" style="height: 2rem; width: 50%;">
+              <div id="myProgressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                0%
+              </div>
+            </div>
+        </div>
+</div>
+
+
+
+<!-- table to display data collections -->
+<table id="dataTable" class="table table-sm table-striped table-bordered table-hover">
+    <!-- columns -->
+    <thead>
+    <tr class="table-primary">
+        <td>Name</td>
+        <td>Enthaltener Zeitraum</td>
+        <td>Anzahl Zeilen</td>
+        <td>Letzte Aktualisierung</td>
+        <td>Aktionen</td>
+    </tr>
+    </thead>
+    <tbody>
+            <!-- rows -->
+            {% for collection in collections %}
+            <tr>
+                <td id="datatable_{{loop.index0}}_0"> {{ collection.name  }}</td>
+                {% if collection.timespan_start %}
+                    <td id="datatable_{{loop.index0}}_1"> {{ collection.timespan_start.strftime('%d.%m.%Y') }} - {{ collection.timespan_end.strftime('%d.%m.%Y') }} </td>
+                {% else %}
+                    <td id="datatable_{{loop.index0}}_1">-</td>
+                {% endif %}
+                {% if collection.row_count %}
+                <td id="datatable_{{loop.index0}}_2"> {{ "{:,}".format(collection.row_count).replace(",",".")}} </td>
+                {% else %}
+                    <td id="datatable_{{loop.index0}}_2">0</td>
+                {% endif %}
+                {% if collection.modified_date %}
+                <td id="datatable_{{loop.index0}}_3"> {{ collection.modified_date.strftime('%d.%m.%Y %H:%M:%S')}} </td>
+               {% else %}
+                    <td id="datatable_{{loop.index0}}_3">-</td>
+                {% endif %}
+            <td id="datatable_{{loop.index0}}_4">
+                <a href="{{ url_for('data_view.update_data', dataset_id=collection._id) }}" data-toggle="tooltip" title="Datensatz ergänzen" style="text-decoration: none">
+                    <div class="btn">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                </a>
+                <!-- Button for calling Delete Modal -->
+                <button data-name='{{collection.name}}' data-id='{{collection._id}}' data-toggle="tooltip" title="Datensatz löschen" class="openDeleteModal btn">
+                    <i class="fas fa-trash-alt" style="text-decoration: none"></i>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+ <div class="modal fade" id="DataDeleteModal" tabindex="-1" role="dialog"
+         aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="result_title" class="modal-title" ></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <fieldset class="form-group">
+                         {{ form.datasetID }}
+                               <!--  select a startdate as filter  -->
+                        <p>Zu löschender Zeitraum:</p>
+                            <div>
+                                {% if form.startDate.errors %}
+                                {{ form.startDate (class_="form-control is-invalid", onchange="selectDate(event)") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.startDate.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.startDate (class_="form-control", onchange="selectDate(event)") }}
+                                {% endif %}
+                                <small class="form-text text-muted">Startdatum (wird ebenfalls gelöscht)</small>
+                            </div>
+
+                            <!--  select a enddate as filter  -->
+                            <div class="mt-3">
+                                {% if form.endDate.errors %}
+                                {{ form.endDate (class_="form-control is-invalid", onchange="selectDate(event)") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.endDate.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.endDate (class_="form-control", onchange="selectDate(event)") }}
+                                {% endif %}
+                                <small class="form-text text-muted">Enddatum (wird ebenfalls gelöscht)</small>
+                            </div>
+                          <!--  checkbox delete-all  -->
+                            <div class="form-check mt-3">
+                                {{ form.deleteAll (class_="form-check-input", onchange="selectAll()") }}
+                                <label class="form-check-label" for="deleteAll">Gesamten Datenstatz löschen</label>
+                               <div id="invalidCheckFeedback" class="invalid-feedback">
+                                    Es sind keine Einträge zu diesem Datensatz vorhanden
+                               </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group d-grid gap-2 col-6 mx-auto">
+                            <button id="dataDeleteModalAbort" data-dismiss="modal" class="btn btn-outline-secondary btn-block">Abbrechen</button>
+                        </div>
+                        <div class="form-group d-grid gap-2 col-6 mx-auto">
+                            <!-- submit button -->
+                            {{ form.deleteSubmit(class="btn btn-outline-danger btn-block") }}
+                        </div>
+                    </div>
+			    </form>
+            </div>
+        </div>
+ </div>
+
+
+     <script>
+        var datasetID;
+        $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip()
+                    $('.openDeleteModal').click(function(){
+                        //clear Form data
+                        $('#startDate').val("")
+                        $('#endDate').val("")
+                        $('#deleteAll').prop('checked',false);
+                        var dataset = $(this).data('name');
+                        datasetID = Math.round($(this).data('id'));
+                        $('#datasetID').val(datasetID);
+                        $('#result_title').text(dataset+' löschen?');
+                        $('#DataDeleteModal').modal({show: true});
+                    });
+        });
+        function selectDate(evt){
+            if (datasetID == 2) {
+                var id = evt.target.id
+                var current = $('#'+id).val()
+                if (current.match(/[1-9]\d\d\d-\d\d-\d\d/)) {
+                    current = current.slice(0, 8)
+                    $('#' + id).val(current + '01')
+                }
+            }
+
+        }
+        function selectAll(){
+            if ($('#deleteAll').is(":checked")){
+                      $.get('/_get_datasetTime/'+datasetID, function (data) {
+                          if (data.begin && data.end) {
+                              datasetDateBegin = new Date(data.begin)
+                              var dateBegin = datasetDateBegin.toISOString().split('T')[0];
+                              datasetDateEnd = new Date(data.end)
+                              var dateEnd = datasetDateEnd.toISOString().split('T')[0];
+                              $('#startDate').val(dateBegin)
+                              $('#endDate').val(dateEnd)
+                          } else {
+
+                          }
+                      })
+            }else{
+                $('#startDate').val("")
+                $('#endDate').val("")
+            }
+          }
+        function reloadTable(){
+            $.ajax({
+                url: '/load_table',
+                type: 'get',
+                success: function(json){
+                    parseTable(json)
+                }
+            })
+        }
+        function parseTable(json){
+                     $('#datasetTableBody').html('');
+                       for(var i = 0; i < json.length; i++) {
+                           var name = ''
+                           var obj = json[i];
+                           name += obj.name;
+                           $('#datatable_'+i+'_0').html(name);
+
+                           var timeline = ''
+                           if (obj.time_begin != null) {
+                               var dateBegin = new Date(obj.time_begin)
+                               dateBegin = (dateBegin.toLocaleDateString("de-DE",{day: "2-digit",month: "2-digit",year: "numeric"}));
+                               var dateEnd = new Date(obj.time_end)
+                                dateEnd = (dateEnd.toLocaleDateString("de-DE",{day: "2-digit",month: "2-digit",year: "numeric"}));
+                               timeline += dateBegin + ' - ' + dateEnd;
+                           }else {
+                               timeline += '-';
+                           }
+                           $('#datatable_'+i+'_1').html(timeline);
+                           var rowCount = ''
+                           if (obj.row_count != null){
+                                rowCount += obj.row_count.toLocaleString();
+                           }else{
+                               rowCount += '0';
+                           }
+                            $('#datatable_'+i+'_2').html(rowCount);
+
+                           var modified=''
+                           if(obj.modified != null) {
+                               dateEnd = new Date(obj.modified)
+                               dateEnd = dateEnd.toLocaleDateString("de-DE", {day: "2-digit",month: "2-digit",year: "numeric", hour: "2-digit", minute:"2-digit", second:"2-digit"});
+                               modified += dateEnd;
+                           }else {
+                               modified += '-';
+                           }
+                            $('#datatable_'+i+'_3').html(modified);
+                    }
+        }
+        function check_progress() {
+            $.get('/_upload_progress', function (data) {
+                 if (!data.abort){
+                    if (data.progress < 100.0) {
+                        $('#myProgressBar').attr('aria-valuenow', data.progress.toFixed(0)).css('width', data.progress.toFixed(0) + '%').text(data.progress.toFixed(0) + '%');
+                        console.log(data.progress)
+                        setTimeout(check_progress, 5000)
+                        $('#myProgressBarTitle').text('Upload für "' + data.datasetName + '"')
+
+                    } else if (data.progress == 100.0) {
+                        $('#myProgressBar').attr('aria-valuenow', data.progress.toFixed(0)).css('width', data.progress.toFixed(0) + '%').text(data.progress.toFixed(0) + '%');
+                        sleep(2000).then(() => {
+                            $("#progressBox").hide();
+                            $("#myProgressSpinner").show();
+                            $('#myProgressBarTitle').text('Datei erfolgreich zur DB hinzugefügt. Aktualisiere Tabelle...').css('width', '100%')
+                            setTimeout(check_progress, 2000)
+                        });
+                    }
+                     else if (data.progress == 101.0) {
+                        $("#myProgressSpinner").hide();
+                        $('#myProgressBarTitle').css('width', '50%')
+                        $("#uploadBarContainer").hide();
+                        reloadTable()
+                    }
+                }else{
+                      $('#progressBox').hide()
+                      $('#myProgressBarTitle').css({"color":"red","width":"100%"}).text('Upload für "' + data.datasetName + '" nicht möglich. Datensätze teilweise bereits vorhanden.')
+                      sleep(5000).then(() => {
+                                $("#uploadBarContainer").hide();
+                        });
+
+                 }
+            })
+        }
+       function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+     </script>
+{% endblock content %}

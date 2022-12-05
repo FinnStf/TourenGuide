@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block noContainer %}
+
+{% for dashboard in dashboards %}
+<div class="row mb-5">
+	<ul class="col-2"></ul>
+	<div class="col-8">
+		<div id="borderDashboard-{{loop.index0}}" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+				 class="border mt-4">
+			<div class="row m-0">
+				<div id="dropcard-1" class="dropzone col m-4" >
+					<div id="graph-1-{{loop.index0}}" class="mx-auto" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center; min-height:20rem; min-width:15rem"></div>
+					<div id="title-1-{{loop.index0}}" class="ml-3" style="font-weight:500; font-size:18px"></div>
+				</div>
+				<div id="dropcard-2" class="dropzone col m-4" >
+					<div id="graph-2-{{loop.index0}}" class="mx-auto" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center; min-height:20rem; min-width:15rem"></div>
+					<div id="title-2-{{loop.index0}}" class="ml-3" style="font-weight:500; font-size:18px"></div>
+				</div>
+			</div>
+			<div class="row m-0">
+				<div id="dropcard-3" class="dropzone col m-4" >
+					<div id="graph-3-{{loop.index0}}" class="mx-auto" style="font-size:12rem; font-weight:lighter; color:grey; text-align: center; min-height:20rem; min-width:15rem"></div>
+					<div id="title-3-{{loop.index0}}" class="ml-3" style="font-weight:500; font-size:18px"></div>
+				</div>
+				<div class="col m-4" >
+					<div id="textFieldBorder-{{loop.index0}}">
+						<div id="textField-{{loop.index0}}" class="mx-3 my-3" style="word-wrap: break-word; min-height:20rem; min-width:15rem; align-content: center; align-items: center; display: flex;"></div>
+					</div>
+					{% if current_user.is_authenticated %}
+						<button id="delete-{{loop.index0}}" type="button" class="mt-3 btn btn-danger btn-md"
+								style="font-size:17px; width: 100%"
+								onclick="deleteDashboard({{loop.index0}})">
+							<i class="fas fa-trash mr-1" id="deleteDashboardIcon"></i>
+							<span id="deleteDashboardText">Dashboard löschen</span>
+						</button>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+	let dashboardData = {{dashboards|safe}};
+
+	for (let i = 0; i < dashboardData.length; i++){
+		//layoutFirst = JSON.parse(dashboardData[i]["first_entry"])["layout"];
+		if(dashboardData[i]["first_entry"] != null){
+			Plotly.plot('graph-1-' + i, JSON.parse(dashboardData[i]["first_entry"]));
+			document.getElementById("title-1-" + i).textContent = dashboardData[i]["first_entry_title"];
+		}
+		if(dashboardData[i]["second_entry"] != null){
+			Plotly.plot('graph-2-' + i, JSON.parse(dashboardData[i]["second_entry"]));
+			document.getElementById("title-2-" + i).textContent = dashboardData[i]["second_entry_title"];
+		}
+		if(dashboardData[i]["third_entry"] != null){
+			Plotly.plot('graph-3-' + i, JSON.parse(dashboardData[i]["third_entry"]));
+			document.getElementById("title-3-" + i).textContent = dashboardData[i]["third_entry_title"];
+		}
+		document.getElementById("textField-" + i).textContent = dashboardData[i]["text"];
+	}
+
+	function deleteDashboard(index){
+		var current_url = window.location.href;
+		var url = current_url + '/delete_dashboard';
+
+		var req = new XMLHttpRequest();
+		req.open("POST", url, true);
+		req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.send({{dashboards|safe}}[index]._id);
+		removeDashboardGUI(index);
+	}
+
+	function removeDashboardGUI(index){
+		var elemDashboard = document.getElementById("borderDashboard-" + index);
+		elemDashboard.parentNode.removeChild(elemDashboard);
+	}
+</script>
+
+{% endblock noContainer %}
